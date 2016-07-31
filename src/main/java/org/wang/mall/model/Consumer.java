@@ -50,14 +50,14 @@ import javax.persistence.OneToMany;
   )
   private String IDcard;
 
+  @OneToMany private Set<Indent> indentSet;
+
 
   @Column(
     length   = 12,
     nullable = false
   )
   private String name;
-
-  @OneToMany private Set<Indent> indentSet;
 
   @Column(
     length   = 16,
@@ -76,6 +76,248 @@ import javax.persistence.OneToMany;
     nullable = false
   )
   private String problem;
+
+  //~ Methods ----------------------------------------------------------------------------------------------------------
+
+  /**
+   * getter method for address set.
+   *
+   * @return  Set
+   */
+  public Set<Address> getAddressSet() {
+    return addressSet;
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * getter method for answer.
+   *
+   * @return  String
+   */
+  public String getAnswer() {
+    return answer;
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * getter method for balance.
+   *
+   * @return  Integer
+   */
+  public Integer getBalance() {
+    return balance;
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * getter method for create date.
+   *
+   * @return  Date
+   */
+  public Date getCreateDate() {
+    return createDate;
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * getter method for id.
+   *
+   * @return  Long
+   */
+  public Long getId() {
+    return id;
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * getter method for IDcard.
+   *
+   * @return  String
+   */
+  public String getIDcard() {
+    return IDcard;
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * getter method for indent set.
+   *
+   * @return  Set
+   */
+  public Set<Indent> getIndentSet() {
+    return indentSet;
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * getter method for name.
+   *
+   * @return  String
+   */
+  public String getName() {
+    return name;
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * getter method for pass word.
+   *
+   * @return  String
+   */
+  public String getPassWord() {
+    return passWord;
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * getter method for phone number.
+   *
+   * @return  String
+   */
+  public String getPhoneNumber() {
+    return phoneNumber;
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * getter method for problem.
+   *
+   * @return  String
+   */
+  public String getProblem() {
+    return problem;
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * setter method for address set.
+   *
+   * @param  addressSet  Set
+   */
+  public void setAddressSet(Set<Address> addressSet) {
+    this.addressSet = addressSet;
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * setter method for answer.
+   *
+   * @param  answer  String
+   */
+  public void setAnswer(String answer) {
+    this.answer = answer;
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * setter method for balance.
+   *
+   * @param  balance  Integer
+   */
+  public void setBalance(Integer balance) {
+    this.balance = balance;
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * setter method for create date.
+   *
+   * @param  createDate  Date
+   */
+  public void setCreateDate(Date createDate) {
+    this.createDate = createDate;
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * setter method for id.
+   *
+   * @param  id  Long
+   */
+  public void setId(Long id) {
+    this.id = id;
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * setter method for IDcard.
+   *
+   * @param  IDcard  String
+   */
+  public void setIDcard(String IDcard) {
+    this.IDcard = IDcard;
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * setter method for indent set.
+   *
+   * @param  indentSet  Set
+   */
+  public void setIndentSet(Set<Indent> indentSet) {
+    this.indentSet = indentSet;
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * setter method for name.
+   *
+   * @param  name  String
+   */
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * setter method for pass word.
+   *
+   * @param  passWord  String
+   */
+  public void setPassWord(String passWord) {
+    this.passWord = passWord;
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * setter method for phone number.
+   *
+   * @param  phoneNumber  String
+   */
+  public void setPhoneNumber(String phoneNumber) {
+    this.phoneNumber = phoneNumber;
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * setter method for problem.
+   *
+   * @param  problem  String
+   */
+  public void setProblem(String problem) {
+    this.problem = problem;
+  }
 
 
 } // end class Consumer

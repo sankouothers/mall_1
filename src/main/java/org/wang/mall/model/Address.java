@@ -39,5 +39,91 @@ import javax.persistence.ManyToOne;
   @Column(nullable = false)
   private boolean isDefaultAddress;
 
+  //~ Methods ----------------------------------------------------------------------------------------------------------
 
+  /**
+   * getter method for address.
+   *
+   * @return  String
+   */
+  public String getAddress() {
+    return address;
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * getter method for consumer.
+   *
+   * @return  Consumer
+   */
+  public Consumer getConsumer() {
+    return consumer;
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * getter method for id.
+   *
+   * @return  Long
+   */
+  public Long getId() {
+    return id;
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * getter method for default address.
+   *
+   * @return  boolean
+   */
+  public boolean isDefaultAddress() {
+    return isDefaultAddress;
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * setter method for address.
+   *
+   * @param  address  String
+   */
+  public void setAddress(String address) {
+    this.address = address;
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * setter method for consumer.
+   *
+   * @param  consumer  Consumer
+   */
+  public void setConsumer(Consumer consumer) {
+    this.consumer = consumer;
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * setter method for default address.
+   *
+   * @param  defaultAddress  boolean
+   */
+  public void setDefaultAddress(boolean defaultAddress) {
+    isDefaultAddress = defaultAddress;
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * setter method for id.
+   *
+   * @param  id  Long
+   */
+  public void setId(Long id) {
+    this.id = id;
+  }
 } // end class Address

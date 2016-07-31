@@ -26,12 +26,57 @@ import javax.persistence.Id;
   @GeneratedValue(strategy = GenerationType.AUTO)
   @Id private Long id;
 
-
   @Column(
     length   = 12,
     nullable = false
   )
   private String name;
+
+  //~ Methods ----------------------------------------------------------------------------------------------------------
+
+
+  /**
+   * getter method for id.
+   *
+   * @return  Long
+   */
+  public Long getId() {
+    return id;
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+
+  /**
+   * getter method for name.
+   *
+   * @return  String
+   */
+  public String getName() {
+    return name;
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * setter method for id.
+   *
+   * @param  id  Long
+   */
+  public void setId(Long id) {
+    this.id = id;
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * setter method for name.
+   *
+   * @param  name  String
+   */
+  public void setName(String name) {
+    this.name = name;
+  }
 
 
 } // end class Category
