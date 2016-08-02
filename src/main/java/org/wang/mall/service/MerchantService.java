@@ -1,6 +1,8 @@
 package org.wang.mall.service;
 
 
+import org.wang.mall.model.Merchant;
+
 /**
  * Created by ozintel06 on 16/6/21.
  *
@@ -9,4 +11,5 @@ package org.wang.mall.service;
  */
 public interface MerchantService {
 
+    Merchant findByNameAndPassWord(String name, String password);
 }
