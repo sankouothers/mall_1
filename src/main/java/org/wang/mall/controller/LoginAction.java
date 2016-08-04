@@ -21,8 +21,6 @@ import org.wang.mall.util.LoginForm;
 @Controller public class LoginAction {
     @Autowired
     private ConsumerService consumerService;
-    @Autowired
-    private MerchantService merchantService;
 
     @RequestMapping(
             value  = "/login",
@@ -38,21 +36,11 @@ import org.wang.mall.util.LoginForm;
             method = RequestMethod.POST
     )
     public String login(LoginForm loginForm) {
-        if ("consumer".equals(loginForm.getRole())) {
             Consumer consumer = consumerService.findByNameAndPassWord(loginForm.getName(),loginForm.getPassword());
-
             if ( consumer != null) {
-                return "redirect:/mall/index";
+                return "redirect:/mall";
             }
-        }
-        if ("merchant".equals(loginForm.getRole())) {
-            Merchant merchant = merchantService.findByNameAndPassWord(loginForm.getName(),loginForm.getPassword());
-
-            if ( merchant != null) {
-                return "redirect:/merchant/index";
-            }
-        }
-            return "redirect:/login?failed=true";
+        return "redirect:/login?failed=true";
     }
 
 }
