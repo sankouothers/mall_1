@@ -34,7 +34,7 @@
             <!-- Nav tabs -->
             <ul class="nav nav-tabs nav-justified" role="tablist">
                 <li role="presentation" class="active"><a href="#consumer" aria-controls="consumer" role="tab" data-toggle="tab">用户登录</a></li>
-                <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">商户登录</a></li>
+                <li role="presentation"><a href="#merchant" aria-controls="merchant" role="tab" data-toggle="tab">商户登录</a></li>
             </ul>
 
             <!-- Tab panes -->
@@ -54,7 +54,7 @@
                         <div class="form-group">
 
                             <div class="col-sm-10 form-group-lg">
-                                <input id="password" type="password" name="password" class="form-control" placeholder="Password">
+                                <input id="passWord" type="password" name="passWord" class="form-control" placeholder="Password">
                             </div>
                         </div>
 
@@ -63,9 +63,15 @@
                                 <button type="submit" class="btn btn-primary btn-lg btn-block ">Sign in</button>
                             </div>
                         </div>
+                        <div class="form-group">
+                            <div class="col-sm-10" align="center">
+                                <a href="consumer/create">注册</a>
+                                <a>忘记密码?</a>
+                            </div>
+                        </div>
                     </form>
                 </div>
-                <div role="tabpanel" class="tab-pane" id="profile">
+                <div role="tabpanel" class="tab-pane" id="merchant">
                     <form action="<c:url value="/merchant/login"/>" method="post" class="form-horizontal">
                         <div class="form-group" style="align: center" >
                         </div>
@@ -79,13 +85,19 @@
                         <div class="form-group">
 
                             <div class="col-sm-10 form-group-lg">
-                                <input id="password" type="password" name="password" class="form-control" placeholder="Password">
+                                <input id="passWord" type="password" name="passWord" class="form-control" placeholder="Password">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <div class="col-sm-10" align="center">
-                                <button type="submit" class="btn btn-primary btn-lg btn-block ">Sign in</button>
+                                <button type="submit" class="btn btn-primary btn-lg btn-block">Sign in</button>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-10" align="center">
+                                <a href="merchant/create">注册</a>
+                                <a>忘记密码?</a>
                             </div>
                         </div>
                     </form>

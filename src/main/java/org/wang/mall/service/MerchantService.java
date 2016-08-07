@@ -12,4 +12,6 @@ import org.wang.mall.model.Merchant;
 public interface MerchantService {
 
     Merchant findByNameAndPassWord(String name, String password);
+
+    void save(Merchant merchant);
 }

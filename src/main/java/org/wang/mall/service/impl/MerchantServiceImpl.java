@@ -19,4 +19,9 @@ public class MerchantServiceImpl implements MerchantService {
     public Merchant findByNameAndPassWord(String name, String password) {
         return merchantRepository.findByNameAndPassWord(name,password);
     }
+
+    @Override
+    public void save(Merchant merchant) {
+        merchantRepository.save(merchant);
+    }
 }

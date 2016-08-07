@@ -7,4 +7,6 @@ import org.wang.mall.model.Consumer;
  */
 public interface ConsumerService {
     Consumer findByNameAndPassWord(String name, String password);
+
+    void save(Consumer consumer);
 }

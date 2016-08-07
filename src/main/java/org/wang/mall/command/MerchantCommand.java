@@ -1,12 +1,9 @@
-package org.wang.mall.model;
-
-import java.io.Serializable;
+package org.wang.mall.command;
 
 import java.util.Date;
 import java.util.Set;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,77 +12,36 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
+import org.wang.mall.model.Commodity;
+import org.wang.mall.model.Indent;
+import org.wang.mall.model.Merchant;
+
 
 /**
- * Created by ozintel06 on 16/7/24.
+ * Created by ozintel06 on 16/8/7.
  *
  * @author   <a href="mailto:chenglong.du@ozstrategy.com">Chenglong Du</a>
- * @version  07/27/2016 21:48
+ * @version  08/07/2016 22:19
  */
-@Entity public class Merchant implements Serializable {
-  //~ Static fields/initializers ---------------------------------------------------------------------------------------
-
-  /** Use serialVersionUID for interoperability. */
-  private static final long serialVersionUID = -8954876391070126047L;
-
+public class MerchantCommand {
   //~ Instance fields --------------------------------------------------------------------------------------------------
 
-  @Column(
-    length   = 100,
-    nullable = false
-  )
   private String answer;
 
-  @JoinTable(
-    name               = "Merchant_commodity",
-    joinColumns        = { @JoinColumn(name = "merchantId") },
-    inverseJoinColumns = { @JoinColumn(name = "commodityId") }
-  )
-  @ManyToMany private Set<Commodity> commoditySet;
+  private Long id;
 
-  @Column(nullable = false)
-  private Date createDate;
-
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  @Id private Long id;
-
-  @Column(
-    length   = 18,
-    nullable = false
-  )
   private String IDcard;
 
-  @OneToMany private Set<Indent> indentSet;
-
-
-  @Column(
-    length   = 12,
-    nullable = false
-  )
   private String name;
 
-  @Column(
-    length   = 16,
-    nullable = false
-  )
   private String passWord;
 
-  @Column(
-    length   = 11,
-    nullable = false
-  )
+  private String passWordValidator;
+
   private String phoneNumber;
 
-  @Column(
-    length   = 100,
-    nullable = false
-  )
   private String question;
 
-  @Column(
-    length   = 20,
-    nullable = false
-  )
   private String userName;
 
   //~ Methods ----------------------------------------------------------------------------------------------------------
@@ -97,28 +53,6 @@ import javax.persistence.OneToMany;
    */
   public String getAnswer() {
     return answer;
-  }
-
-  //~ ------------------------------------------------------------------------------------------------------------------
-
-  /**
-   * getter method for commodity set.
-   *
-   * @return  Set
-   */
-  public Set<Commodity> getCommoditySet() {
-    return commoditySet;
-  }
-
-  //~ ------------------------------------------------------------------------------------------------------------------
-
-  /**
-   * getter method for create date.
-   *
-   * @return  Date
-   */
-  public Date getCreateDate() {
-    return createDate;
   }
 
   //~ ------------------------------------------------------------------------------------------------------------------
@@ -146,17 +80,6 @@ import javax.persistence.OneToMany;
   //~ ------------------------------------------------------------------------------------------------------------------
 
   /**
-   * getter method for indent set.
-   *
-   * @return  Set
-   */
-  public Set<Indent> getIndentSet() {
-    return indentSet;
-  }
-
-  //~ ------------------------------------------------------------------------------------------------------------------
-
-  /**
    * getter method for name.
    *
    * @return  String
@@ -174,6 +97,17 @@ import javax.persistence.OneToMany;
    */
   public String getPassWord() {
     return passWord;
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * getter method for pass word validator.
+   *
+   * @return  String
+   */
+  public String getPassWordValidator() {
+    return passWordValidator;
   }
 
   //~ ------------------------------------------------------------------------------------------------------------------
@@ -223,28 +157,6 @@ import javax.persistence.OneToMany;
   //~ ------------------------------------------------------------------------------------------------------------------
 
   /**
-   * setter method for commodity set.
-   *
-   * @param  commoditySet  Set
-   */
-  public void setCommoditySet(Set<Commodity> commoditySet) {
-    this.commoditySet = commoditySet;
-  }
-
-  //~ ------------------------------------------------------------------------------------------------------------------
-
-  /**
-   * setter method for create date.
-   *
-   * @param  createDate  Date
-   */
-  public void setCreateDate(Date createDate) {
-    this.createDate = createDate;
-  }
-
-  //~ ------------------------------------------------------------------------------------------------------------------
-
-  /**
    * setter method for id.
    *
    * @param  id  Long
@@ -267,17 +179,6 @@ import javax.persistence.OneToMany;
   //~ ------------------------------------------------------------------------------------------------------------------
 
   /**
-   * setter method for indent set.
-   *
-   * @param  indentSet  Set
-   */
-  public void setIndentSet(Set<Indent> indentSet) {
-    this.indentSet = indentSet;
-  }
-
-  //~ ------------------------------------------------------------------------------------------------------------------
-
-  /**
    * setter method for name.
    *
    * @param  name  String
@@ -295,6 +196,17 @@ import javax.persistence.OneToMany;
    */
   public void setPassWord(String passWord) {
     this.passWord = passWord;
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * setter method for pass word validator.
+   *
+   * @param  passWordValidator  String
+   */
+  public void setPassWordValidator(String passWordValidator) {
+    this.passWordValidator = passWordValidator;
   }
 
   //~ ------------------------------------------------------------------------------------------------------------------
@@ -330,5 +242,16 @@ import javax.persistence.OneToMany;
     this.userName = userName;
   }
 
-
-} // end class Merchant
+  public Merchant toMerchant(MerchantCommand command) {
+    Merchant merchant = new Merchant();
+    merchant.setName(command.getName());
+    merchant.setQuestion(command.getQuestion());
+    merchant.setIDcard(command.getIDcard());
+    merchant.setPhoneNumber(command.getPhoneNumber());
+    merchant.setAnswer(command.getAnswer());
+    merchant.setCreateDate(new Date());
+    merchant.setPassWord(command.getPassWord());
+    merchant.setUserName(command.getUserName());
+    return merchant;
+  }
+} // end class MerchantCommand

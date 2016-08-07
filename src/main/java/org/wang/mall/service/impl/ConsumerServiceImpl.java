@@ -20,4 +20,9 @@ public class ConsumerServiceImpl implements ConsumerService {
     public Consumer findByNameAndPassWord(String name, String password) {
         return consumerRepository.findByNameAndPassWord(name,password);
     }
+
+    @Override
+    public void save(Consumer consumer) {
+        consumerRepository.save(consumer);
+    }
 }

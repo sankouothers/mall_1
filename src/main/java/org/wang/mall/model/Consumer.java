@@ -75,7 +75,7 @@ import javax.persistence.OneToMany;
     length   = 100,
     nullable = false
   )
-  private String problem;
+  private String question;
 
   //~ Methods ----------------------------------------------------------------------------------------------------------
 
@@ -190,12 +190,12 @@ import javax.persistence.OneToMany;
   //~ ------------------------------------------------------------------------------------------------------------------
 
   /**
-   * getter method for problem.
+   * getter method for question.
    *
    * @return  String
    */
-  public String getProblem() {
-    return problem;
+  public String getQuestion() {
+    return question;
   }
 
   //~ ------------------------------------------------------------------------------------------------------------------
@@ -310,13 +310,15 @@ import javax.persistence.OneToMany;
 
   //~ ------------------------------------------------------------------------------------------------------------------
 
+  //~ ------------------------------------------------------------------------------------------------------------------
+
   /**
-   * setter method for problem.
+   * setter method for question.
    *
-   * @param  problem  String
+   * @param  question  String
    */
-  public void setProblem(String problem) {
-    this.problem = problem;
+  public void setQuestion(String question) {
+    this.question = question;
   }
 
 
