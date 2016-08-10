@@ -108,22 +108,14 @@
     </div>
 </div>
 
-
-
-
-<script>
-    $('#myTabs a').click(function (e) {
-        e.preventDefault()
-        $(this).tab('show')
-    })
-    $('#myTabs li:eq(2) a').tab('show')
-</script>
-
-
-
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="<c:url value="/bootstrap/js/bootstrap.min.js" />"></script>
+<script src="<c:url value="/bootstrap/js/bootstrap.min.js" />">
+    $('#myTabs a').click(function (e) {
+        e.preventDefault()
+        $(this).tab('show')
+    });
+</script>
 </body>
 </html>
