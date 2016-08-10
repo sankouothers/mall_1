@@ -39,6 +39,16 @@ public class ConsumerCommand {
 
   private String question;
 
+  public String getCreate() {
+    return create;
+  }
+
+  public void setCreate(String create) {
+    this.create = create;
+  }
+
+  private String create = "F";
+
   //~ Methods ----------------------------------------------------------------------------------------------------------
 
   /**

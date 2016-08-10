@@ -130,9 +130,57 @@
   </div>
 </div>
 
+<%--希望实现的弹窗--%>
+<div class="modal fade" role="dialog" aria-labelledby="gridSystemModalLabel" id="myModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="gridSystemModalLabel">通知</h4>
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-3 col-md-offset-3">
+              <h4>注册成功</h4>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-9">
+              <div class="row">
+                <div class="col-xs-8 col-sm-6">
+                  点击确认将跳转到登录页面
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" id="determine">Determine</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="<c:url value="/bootstrap/js/bootstrap.min.js" />"></script>
+
+<script>
+  var create = "${command.create}";
+
+  if (create == "Y" && create != null) {
+    $('#myModal').modal();
+  }
+
+  $('#determine').click(function () {
+    location.href = "/login";
+  })
+</script>
+
 </body>
 </html>

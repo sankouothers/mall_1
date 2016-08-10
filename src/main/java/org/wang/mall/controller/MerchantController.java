@@ -13,6 +13,8 @@ import org.wang.mall.model.Merchant;
 import org.wang.mall.service.MerchantService;
 import org.wang.mall.util.LoginForm;
 
+import javax.servlet.http.HttpServletRequest;
+
 
 /**
  * Created by ozintel06 on 16/8/3.
@@ -43,7 +45,7 @@ public class MerchantController {
   public String createMerchant(MerchantCommand command) {
      Merchant merchant = command.toMerchant(command);
       merchantService.save(merchant);
-    return "redirect:/login";
+    return "redirect:/consumer/create?create=Y";
   }
 
   //~ ------------------------------------------------------------------------------------------------------------------
@@ -80,8 +82,14 @@ public class MerchantController {
     value  = "/create",
     method = RequestMethod.GET
   )
-  public String toCreateMerchantView(Model model) {
+  public String toCreateMerchantView(HttpServletRequest request, Model model) {
       MerchantCommand command = new MerchantCommand();
+
+    if (request.getParameter("create") != null && request.getParameter("create").equals("Y")) {
+      command.setCreate("Y");
+      model.addAttribute("command",command);
+      return "/consumer/create";
+    }
       model.addAttribute("command",command);
     return "/merchant/create";
   }

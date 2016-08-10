@@ -10,6 +10,8 @@ import org.wang.mall.command.ConsumerCommand;
 import org.wang.mall.model.Consumer;
 import org.wang.mall.service.ConsumerService;
 
+import javax.servlet.http.HttpServletRequest;
+
 
 /**
  * Created by ozintel06 on 16/8/7.
@@ -37,7 +39,7 @@ public class ConsumerController {
   public String createConsumer(ConsumerCommand command) {
      Consumer consumer = command.toConsumer(command);
       consumerService.save(consumer);
-    return "redirect:/login";
+    return "redirect:/consumer/create?create=Y";
   }
 
   //~ ------------------------------------------------------------------------------------------------------------------
@@ -51,8 +53,13 @@ public class ConsumerController {
     value  = "/create",
     method = RequestMethod.GET
   )
-  public String toCreateConsumerView(Model model) {
+  public String toCreateConsumerView(HttpServletRequest request,Model model) {
       ConsumerCommand command = new ConsumerCommand();
+      if (request.getParameter("create") != null && request.getParameter("create").equals("Y")) {
+          command.setCreate("Y");
+          model.addAttribute("command",command);
+          return "/consumer/create";
+      }
       model.addAttribute("command",command);
     return "/consumer/create";
   }
