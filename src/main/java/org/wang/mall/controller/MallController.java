@@ -60,12 +60,12 @@ import org.wang.mall.service.MerchantService;
         }
 
         if (command.getPage().equalsIgnoreCase("edit")) {
-          if (command.getPassWord().equals(consumer.getPassWord())){
+          if (command.getPassWord().equals(consumer.getPassWord())) {
             consumer.setPassWord(command.getNewPassWord());
             consumerService.save(consumer);
 
             return "redirect:/editPasswordSuccess";
-          }else{
+          } else {
             return "redirect:/editPassword?page=edit&id=" + command.getId() + "&role=" + command.getRole();
           }
         }
@@ -77,19 +77,20 @@ import org.wang.mall.service.MerchantService;
       Merchant merchant = merchantService.findOne(command.getId());
 
       if (merchant != null) {
-        if (command.getRole().equals("forgot")){
+        if (command.getRole().equals("forgot")) {
           merchant.setPassWord(command.getNewPassWord());
           merchantService.save(merchant);
 
           return "redirect:/editPasswordSuccess";
         }
+
         if (command.getPage().equalsIgnoreCase("edit")) {
-          if (command.getPassWord().equals(merchant.getPassWord())){
+          if (command.getPassWord().equals(merchant.getPassWord())) {
             merchant.setPassWord(command.getNewPassWord());
             merchantService.save(merchant);
 
             return "redirect:/editPasswordSuccess";
-          }else{
+          } else {
             return "redirect:/editPassword?page=edit&id=" + command.getId() + "&role=" + command.getRole();
           }
         }
