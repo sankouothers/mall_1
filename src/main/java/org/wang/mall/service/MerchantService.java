@@ -14,4 +14,8 @@ public interface MerchantService {
     Merchant findByNameAndPassWord(String name, String password);
 
     void save(Merchant merchant);
+
+    Merchant findByName(String name);
+
+    Merchant findOne(Long id);
 }

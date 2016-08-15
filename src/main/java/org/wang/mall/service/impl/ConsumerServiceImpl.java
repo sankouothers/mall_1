@@ -25,4 +25,14 @@ public class ConsumerServiceImpl implements ConsumerService {
     public void save(Consumer consumer) {
         consumerRepository.save(consumer);
     }
+
+    @Override
+    public Consumer findByName(String name) {
+        return consumerRepository.findByName(name);
+    }
+
+    @Override
+    public Consumer findOne(Long id) {
+        return consumerRepository.findOne(id);
+    }
 }

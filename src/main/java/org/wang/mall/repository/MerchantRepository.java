@@ -16,4 +16,6 @@ import org.wang.mall.model.Merchant;
 @Repository public interface MerchantRepository extends CrudRepository<Merchant, Long> {
 
     Merchant findByNameAndPassWord(String name, String password);
+
+    Merchant findByName(String name);
 }

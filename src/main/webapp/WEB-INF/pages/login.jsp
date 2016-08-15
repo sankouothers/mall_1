@@ -13,6 +13,24 @@
     <jsp:include page="/WEB-INF/common/meta.jsp"/>
     <title>用户登录</title>
 
+    <script type="text/javascript">
+        function getMerchantHref() {
+            var input = document.getElementById("merchantName");
+            var name = input.value;
+            if (name == null ){
+                window.location.href = "login"
+            }
+            window.location.href = "forgotPassword?name="+name+"role=merchant";
+        }
+
+        function getConsumerHref() {
+            var name = document.getElementById("consumerName").value;
+            if (name == null ){
+                window.location.href = "login"
+            }
+            window.location.href = "forgotPassword?name="+name+"&role=consumer";
+        }
+    </script>
 </head>
 <body class="body">
 
@@ -47,14 +65,14 @@
                         <div class="form-group">
 
                             <div class="col-sm-10 form-group-lg">
-                                <input id="name" type="text" name="name" class="form-control" placeholder="Username">
+                                <input id="consumerName" type="text" name="name" class="form-control" placeholder="Username">
                             </div>
                         </div>
 
                         <div class="form-group">
 
                             <div class="col-sm-10 form-group-lg">
-                                <input id="passWord" type="password" name="passWord" class="form-control" placeholder="Password">
+                                <input id="consumerPassWord" type="password" name="passWord" class="form-control" placeholder="Password">
                             </div>
                         </div>
 
@@ -66,7 +84,7 @@
                         <div class="form-group">
                             <div class="col-sm-10" align="center">
                                 <a href="consumer/create">注册</a>
-                                <a>忘记密码?</a>
+                                <a href="javascript:void(0);" onclick="getConsumerHref()">忘记密码?</a>
                             </div>
                         </div>
                     </form>
@@ -78,14 +96,14 @@
                         <div class="form-group" style="align-items: center">
 
                             <div class="col-sm-10 form-group-lg">
-                                <input id="name" type="text" name="name" class="form-control" placeholder="Username">
+                                <input id="merchantName" type="text" name="name" class="form-control" placeholder="Username">
                             </div>
                         </div>
 
                         <div class="form-group">
 
                             <div class="col-sm-10 form-group-lg">
-                                <input id="passWord" type="password" name="passWord" class="form-control" placeholder="Password">
+                                <input id="merchantPassWord" type="password" name="passWord" class="form-control" placeholder="Password">
                             </div>
                         </div>
 
@@ -97,7 +115,8 @@
                         <div class="form-group">
                             <div class="col-sm-10" align="center">
                                 <a href="merchant/create">注册</a>
-                                <a>忘记密码?</a>
+                                <%--href="merchant/forgotPassword"--%>
+                                <a href="javascript:void(0);" onclick="getMerchantHref()">忘记密码?</a>
                             </div>
                         </div>
                     </form>

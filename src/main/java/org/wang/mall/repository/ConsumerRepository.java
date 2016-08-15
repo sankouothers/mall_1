@@ -8,4 +8,6 @@ import org.wang.mall.model.Consumer;
  */
 public interface ConsumerRepository extends CrudRepository<Consumer, Long> {
     Consumer findByNameAndPassWord(String name,String password);
+
+    Consumer findByName(String name);
 }

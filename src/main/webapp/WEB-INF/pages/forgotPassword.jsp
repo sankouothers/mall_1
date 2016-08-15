@@ -12,7 +12,7 @@
 <html>
 <head>
   <jsp:include page="/WEB-INF/common/meta.jsp"/>
-  <title>商户注册</title>
+  <title>修改密码</title>
 </head>
 <body>
 
@@ -21,86 +21,32 @@
 
   <div class="well">
     <h1 class="text-center">
-       商户注册
+      修改密码
     </h1>
-    <form:form action="/merchant/create" method="post" cssClass="form-horizontal" commandName="command">
+    <form:form action="forgotPassword" method="post" cssClass="form-horizontal" commandName="command">
+
       <form:hidden path="id"/>
+
+      <form:hidden path="role"/>
 
       <spring:bind path="name">
         <div class="form-group ${status.error ? 'has-error' : ''}">
-          <label for="name" class="col-sm-2 control-label">Username</label>
+          <label for="name" class="col-sm-2 control-label">User Name</label>
 
           <div class="col-sm-10">
-            <form:input id="name" path="name" cssClass="form-control" placeholder="Username" required="true"/>
+            <form:input id="name" path="name" cssClass="form-control" placeholder="UserName" value="${command.name}" readonly="true"/>
             <form:errors path="name" cssClass="alert-danger" element="div"/>
           </div>
-
         </div>
       </spring:bind>
 
-      <spring:bind path="passWord">
-        <div class="form-group ${status.error ? 'has-error' : ''}">
-          <label for="passWord" class="col-sm-2 control-label">Password</label>
-
-          <div class="col-sm-10">
-            <form:password id="passWord" path="passWord" cssClass="form-control" placeholder="Password"
-                           required="true"/>
-            <form:errors path="passWord" cssClass="alert-danger" element="div"/>
-          </div>
-        </div>
-      </spring:bind>
-
-      <spring:bind path="passWordValidator">
-        <div class="form-group ${status.error ? 'has-error' : ''}">
-          <label for="passWordValidator" class="col-sm-2 control-label">Confirm password</label>
-
-          <div class="col-sm-10">
-            <form:password id="passWordValidator" path="passWordValidator" cssClass="form-control" placeholder="passWord Validator"
-                           required="true"/>
-            <form:errors path="passWordValidator" cssClass="alert-danger" element="div"/>
-          </div>
-        </div>
-      </spring:bind>
-
-      <spring:bind path="phoneNumber">
-        <div class="form-group ${status.error ? 'has-error' : ''}">
-          <label for="phoneNumber" class="col-sm-2 control-label">Phone Number</label>
-
-          <div class="col-sm-10">
-            <form:input id="phoneNumber" path="phoneNumber" cssClass="form-control" placeholder="phone" type="number"/>
-            <form:errors path="phoneNumber" cssClass="alert-danger" element="div"/>
-          </div>
-        </div>
-      </spring:bind>
-
-      <spring:bind path="userName">
-        <div class="form-group ${status.error ? 'has-error' : ''}">
-          <label for="userName" class="col-sm-2 control-label">User Name</label>
-
-          <div class="col-sm-10">
-            <form:input id="userName" path="userName" cssClass="form-control" placeholder="UserName" type="number"/>
-            <form:errors path="userName" cssClass="alert-danger" element="div"/>
-          </div>
-        </div>
-      </spring:bind>
-
-      <spring:bind path="IDcard">
-        <div class="form-group ${status.error ? 'has-error' : ''}">
-          <label for="IDcard" class="col-sm-2 control-label">IDCardNumber</label>
-
-          <div class="col-sm-10">
-            <form:input id="IDcard" path="IDcard" cssClass="form-control" placeholder="IDCardNumber"/>
-            <form:errors path="IDcard" cssClass="alert-danger" element="div"/>
-          </div>
-        </div>
-      </spring:bind>
 
       <spring:bind path="question">
         <div class="form-group ${status.error ? 'has-error' : ''}">
           <label for="answer" class="col-sm-2 control-label">Question</label>
 
           <div class="col-sm-10">
-            <form:input id="question" path="question" cssClass="form-control" placeholder="Question"/>
+            <form:input id="question" path="question" cssClass="form-control" value="${command.question}" placeholder="Question" readonly="true"/>
             <form:errors path="question" cssClass="alert-danger" element="div"/>
           </div>
         </div>
@@ -127,7 +73,7 @@
   </div>
 </div>
 
-<%--希望实现的弹窗--%>
+
 <div class="modal fade" role="dialog" aria-labelledby="gridSystemModalLabel" id="myModal">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -139,7 +85,7 @@
         <div class="container-fluid">
           <div class="row">
             <div class="col-md-3 col-md-offset-3">
-              <h4>注册成功</h4>
+              <h4 id="info"><span style="color: red">${command.name}</span>该用户不存在</h4>
             </div>
           </div>
 
@@ -155,8 +101,8 @@
 
         </div>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" id="determine">Determine</button>
+      <div class="modal-footer" id="determine">
+        <button type="button" class="btn btn-primary" >Determine</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
@@ -168,13 +114,26 @@
 <script src="<c:url value="/bootstrap/js/bootstrap.min.js" />"></script>
 
 <script type="text/javascript">
-  var create = "${command.create}";
+  var noUser = "${command.noUser}";
+  var requestError = "${command.requestError}";
 
-  if (create == "Y" && create != null) {
-    $('#myModal').modal();
+  if (noUser == "Y" && noUser != null) {
+    $('#myModal').modal({keyboard: false});
   }
 
-  $('#determine').click(function () {
+  $('#myModal').on('shown.bs.modal', function (e) {
+//    JavaScript 方式
+//    var info = document.getElementById("info")
+//    info.innerHTML = "请求错误";
+//    jQuery 方式
+    $('#info').html("请求错误")
+
+  })
+  if (requestError == "Y" && requestError != null) {
+    $('#myModal').modal({keyboard: false})
+  }
+
+  $('#determine button').click(function () {
     location.href = "/login";
   })
 </script>

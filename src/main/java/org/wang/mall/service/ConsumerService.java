@@ -9,4 +9,8 @@ public interface ConsumerService {
     Consumer findByNameAndPassWord(String name, String password);
 
     void save(Consumer consumer);
+
+    Consumer findByName(String name);
+
+    Consumer findOne(Long id);
 }

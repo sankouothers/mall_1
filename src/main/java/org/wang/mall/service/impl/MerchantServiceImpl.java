@@ -24,4 +24,14 @@ public class MerchantServiceImpl implements MerchantService {
     public void save(Merchant merchant) {
         merchantRepository.save(merchant);
     }
+
+    @Override
+    public Merchant findByName(String name) {
+        return merchantRepository.findByName(name);
+    }
+
+    @Override
+    public Merchant findOne(Long id) {
+        return merchantRepository.findOne(id);
+    }
 }
