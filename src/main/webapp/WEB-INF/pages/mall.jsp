@@ -21,16 +21,16 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12" role="main" id="commodityListByCreateDate">
-
+                <%--commodityListByCreateDate.jsp--%>
             </div>
         </div>
 
         <div class="row">
-            <aside class="col-md-4">
-                <p><h1>123123123123</h1></p>
+            <aside class="col-md-4" id="categoryList">
+                <%--categoryList.jsp--%>
             </aside>
             <main class="col-md-8" id="commodityListBySales" >
-
+                <%--commodityListBySales.jsp--%>
             </main>
         </div>
     </div>
@@ -44,34 +44,22 @@
 
 <script>
 
-//    function loadCommodity() {
-//        console.log("4444444444")
-//        $.ajax({
-//            url:"commodity/commodityListBySales",
-//            async:true,
-//            type:"get",
-//            success:function (response) {
-//                $("#commodityList").html(response);
-//            }
-//        }
-//        );
-//    }
-
-    $(document).ready(function(){
+    $(document).ready(function () {
         console.log('ready');
         var commodityListBySales = document.getElementById("commodityListBySales");
         var commodityListByCreateDate = document.getElementById("commodityListByCreateDate");
 
-        $("#commodityListBySales").load("commodity/commodityListBySales",function (response) {
+        $("#commodityListBySales").load("commodity/commodityListBySales", function (response) {
             $("#commodityListBySales").html(response);
         });
 
-        $("#commodityListByCreateDate").load("commodity/commodityListByCreateDate",function (response) {
-            console.log(response)
+        $("#commodityListByCreateDate").load("commodity/commodityListByCreateDate", function (response) {
             $("#commodityListByCreateDate").html(response);
         })
+        $("#categoryList").load("category/categoryList", function (response) {
+            $("#categoryList").html(response);
+        })
 
-//        loadCommodity();
     });
 </script>
 
