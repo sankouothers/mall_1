@@ -72,7 +72,7 @@
                         <div class="form-group">
 
                             <div class="col-sm-10 form-group-lg">
-                                <input id="consumerPassWord" type="password" name="passWord" class="form-control" placeholder="Password">
+                                <input id="consumerPassWord" type="password" name="password" class="form-control" placeholder="Password">
                             </div>
                         </div>
 
