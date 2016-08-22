@@ -22,6 +22,17 @@ import org.wang.mall.model.Commodity;
   //~ Methods ----------------------------------------------------------------------------------------------------------
 
   /**
+   * findByNameStartingWith.
+   *
+   * @param   queryText  String
+   *
+   * @return  List
+   */
+  List<Commodity> findByNameStartingWith(String queryText);
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
    * findBySales.
    *
    * @return  List
@@ -36,4 +47,4 @@ import org.wang.mall.model.Commodity;
    * @return  List
    */
   List<Commodity> findTop5ByOrderByCreateDateDesc();
-}
+} // end interface CommodityRepository

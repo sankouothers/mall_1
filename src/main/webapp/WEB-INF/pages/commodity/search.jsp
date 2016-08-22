@@ -22,9 +22,9 @@
       <div class="row">
         <div class="col-lg-6" style="float:right;">
           <div class="input-group">
-            <input type="text" id="query" class="form-control input-lg" placeholder="Search for...">
+            <input type="text" id="queryText" class="form-control input-lg" placeholder="Search for...">
       <span class="input-group-btn">
-        <button class="btn btn-primary btn-lg" type="button" id="search">Search</button>
+        <button class="btn btn-primary btn-lg" type="button" id="searchBtn" onclick="search()">Search</button>
       </span>
           </div><!-- /input-group -->
         </div><!-- /.col-lg-6 -->
@@ -49,6 +49,20 @@
       $("#commodityList").html(response);
     })
   });
+  function search() {
+    var value = $("#queryText")[0].value;
+    if (value == null && value == "") {
+      $("#commodityList").load("commodity/commodityList", function (response) {
+        $("#commodityList").html(response);
+      });
+    } else {
+      $("#commodityList").load("commodity/commodityList?queryText=" + value, function (response) {
+        $("#commodityList").load("commodity/commodityList?queryText=" + value, function (response) {
+          $("#commodityList").html(response);
+        });
+      });
+    }
+  }
 </script>
 </body>
 </html>

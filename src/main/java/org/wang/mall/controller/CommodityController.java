@@ -32,6 +32,35 @@ public class CommodityController {
   //~ Methods ----------------------------------------------------------------------------------------------------------
 
   /**
+   * commodityList.
+   *
+   * @param   request  HttpServletRequest
+   *
+   * @return  String
+   */
+  @RequestMapping(
+    value  = "/commodityList",
+    method = RequestMethod.GET
+  )
+  public String commodityList(HttpServletRequest request) {
+    String queryText = request.getParameter("queryText");
+
+    if (queryText != null) {
+      List<Commodity> commodityList = commodityService.findByNameStartingWith(queryText);
+      request.setAttribute("commodityList", commodityList);
+
+      return "commodity/commodityList";
+    }
+
+    List<Commodity> commodityList = commodityService.findAll();
+    request.setAttribute("commodityList", commodityList);
+
+    return "commodity/commodityList";
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
    * commodityListByCreateDate.
    *
    * @param   request  HttpServletRequest
@@ -69,17 +98,5 @@ public class CommodityController {
     request.setAttribute("commodityListBySales", commodityListBySales);
 
     return "commodity/commodityListBySales";
-  }
-
-  @RequestMapping(
-    value  = "/commodityList",
-    method = RequestMethod.GET
-  )
-  public String commodityList(HttpServletRequest request) {
-    List<Commodity> commodityList = commodityService.findAll();
-
-    request.setAttribute("commodityList", commodityList);
-
-    return "commodity/commodityList";
   }
 } // end class CommodityController

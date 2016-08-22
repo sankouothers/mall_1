@@ -24,6 +24,17 @@ public interface CommodityService {
   //~ ------------------------------------------------------------------------------------------------------------------
 
   /**
+   * findByNameStartingWith.
+   *
+   * @param   queryText  String
+   *
+   * @return  List
+   */
+  List<Commodity> findByNameStartingWith(String queryText);
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
    * findBySales.
    *
    * @return  List

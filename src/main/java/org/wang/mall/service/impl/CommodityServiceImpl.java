@@ -39,6 +39,15 @@ import org.wang.mall.service.CommodityService;
   //~ ------------------------------------------------------------------------------------------------------------------
 
   /**
+   * @see  org.wang.mall.service.CommodityService#findByNameStartingWith(java.lang.String)
+   */
+  @Override public List<Commodity> findByNameStartingWith(String queryText) {
+    return commodityRepository.findByNameStartingWith(queryText);
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
    * @see  org.wang.mall.service.CommodityService#findTop12ByOrderBySalesDesc()
    */
   @Override public List<Commodity> findTop12ByOrderBySalesDesc() {
