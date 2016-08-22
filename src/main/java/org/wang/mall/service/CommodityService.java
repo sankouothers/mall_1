@@ -29,4 +29,6 @@ public interface CommodityService {
    * @return  List
    */
   List<Commodity> findTop5ByOrderByCreateDateDesc();
+
+  List<Commodity> findAll();
 }

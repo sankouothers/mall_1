@@ -1,6 +1,7 @@
 package org.wang.mall.controller;
 
 import java.util.Enumeration;
+import java.util.List;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -15,8 +16,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import org.wang.mall.command.PasswordCommand;
+import org.wang.mall.model.Commodity;
 import org.wang.mall.model.Consumer;
 import org.wang.mall.model.Merchant;
+import org.wang.mall.service.CommodityService;
 import org.wang.mall.service.ConsumerService;
 import org.wang.mall.service.MerchantService;
 
@@ -32,6 +35,7 @@ import org.wang.mall.service.MerchantService;
 
   @Autowired private ConsumerService consumerService;
   @Autowired private MerchantService merchantService;
+  @Autowired private CommodityService commodityService;
 
   //~ Methods ----------------------------------------------------------------------------------------------------------
 
@@ -264,6 +268,16 @@ import org.wang.mall.service.MerchantService;
   )
   public String toLoginView() {
     return "mall";
+  }
+  @RequestMapping(
+    value  = "/search",
+    method = RequestMethod.GET
+  )
+  public String toSearchWinView(HttpServletRequest request) {
+    List<Commodity> commodityList =  commodityService.findAll();
+
+    request.setAttribute("commodityList",commodityList);
+    return "commodity/commodityList";
   }
 
 } // end class MallController

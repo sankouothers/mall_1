@@ -29,9 +29,15 @@
             <aside class="col-md-4" id="categoryList">
                 <%--categoryList.jsp--%>
             </aside>
-            <main class="col-md-8" id="commodityListBySales" >
-                <%--commodityListBySales.jsp--%>
-            </main>
+            <div class="col-md-8">
+                <div class="row" style="padding-right: 15px;" align="right">
+                    <a type="button" class="btn btn-primary" id="search">点击按钮进行商品搜索</a>
+                </div>
+                <main  id="commodityListBySales" >
+                    <%--commodityListBySales.jsp--%>
+                </main>
+            </div>
+
         </div>
     </div>
 </section>
@@ -45,7 +51,6 @@
 <script>
 
     $(document).ready(function () {
-        console.log('ready');
         var commodityListBySales = document.getElementById("commodityListBySales");
         var commodityListByCreateDate = document.getElementById("commodityListByCreateDate");
 
@@ -61,6 +66,10 @@
         })
 
     });
+
+    $("#search").click(function () {
+        window.open("search")
+    })
 </script>
 
 </body>

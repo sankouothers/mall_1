@@ -9,27 +9,40 @@
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
 <div class="panel panel-default">
     <c:forEach var="item" items="${commodityListBySales}">
-        <div class=" col-md-3">
-            <table class="table">
-                <thead>
+        <div class=" col-md-6">
+            <div class="thumbnail">
+                    <%--<img src="..." alt="...">--%>
+                <div class="caption" >
 
-                </thead>
-                <tbody>
-                <tr>
-                    <td>名称</td>
-                    <td>${item.name}</td>
-                </tr>
-                <tr>
-                    <td>品牌</td>
-                    <td>${item.brand.name}</td>
-                </tr>
-                <tr>
-                    <td>价格</td>
-                    <td>${item.price}</td>
-                </tr>
+                    <div class="table" style="margin-bottom: 0px;">
+                        <table class="table" style="margin-bottom: 0px;">
+                                <thead>
 
-                </tbody>
-            </table>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>名称</td>
+                                    <td>${item.name}</td>
+                                </tr>
+                                <tr>
+                                    <td>品牌</td>
+                                    <td>${item.brand.name}</td>
+                                </tr>
+                                <tr>
+                                    <td>价格</td>
+                                    <td>${item.price}</td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+                    </div>
+
+                    <p style="margin-bottom: 0px;">
+                        <a href="#" class="btn btn-primary" role="button" >Button</a>
+                    </p>
+                </div>
+            </div>
+
         </div>
 
     </c:forEach>
