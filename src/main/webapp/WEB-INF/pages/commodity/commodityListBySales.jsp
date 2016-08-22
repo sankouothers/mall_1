@@ -8,42 +8,42 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
 <div class="panel panel-default">
-    <c:forEach var="item" items="${commodityListBySales}">
-        <div class=" col-md-6">
-            <div class="thumbnail">
-                    <%--<img src="..." alt="...">--%>
-                <div class="caption" >
+  <c:forEach var="item" items="${commodityListBySales}">
+    <div class=" col-md-6">
+      <div class="thumbnail">
+          <%--<img src="..." alt="...">--%>
+        <div class="caption">
 
-                    <div class="table" style="margin-bottom: 0px;">
-                        <table class="table" style="margin-bottom: 0px;">
-                                <thead>
+          <div class="table" style="margin-bottom: 0px;">
+            <table class="table" style="margin-bottom: 0px;">
+              <thead>
 
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td>名称</td>
-                                    <td>${item.name}</td>
-                                </tr>
-                                <tr>
-                                    <td>品牌</td>
-                                    <td>${item.brand.name}</td>
-                                </tr>
-                                <tr>
-                                    <td>价格</td>
-                                    <td>${item.price}</td>
-                                </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <td>名称</td>
+                <td>${item.name}</td>
+              </tr>
+              <tr>
+                <td>品牌</td>
+                <td>${item.brand.name}</td>
+              </tr>
+              <tr>
+                <td>价格</td>
+                <td>${item.price}</td>
+              </tr>
 
-                                </tbody>
-                            </table>
-                    </div>
+              </tbody>
+            </table>
+          </div>
 
-                    <p style="margin-bottom: 0px;">
-                        <a href="#" class="btn btn-primary" role="button" >Button</a>
-                    </p>
-                </div>
-            </div>
-
+          <p style="margin-bottom: 0px;">
+            <a href="#" class="btn btn-primary" role="button">Button</a>
+          </p>
         </div>
+      </div>
 
-    </c:forEach>
+    </div>
+
+  </c:forEach>
 </div>

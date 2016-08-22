@@ -15,6 +15,15 @@ public interface CommodityService {
   //~ Methods ----------------------------------------------------------------------------------------------------------
 
   /**
+   * findAll.
+   *
+   * @return  List
+   */
+  List<Commodity> findAll();
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
    * findBySales.
    *
    * @return  List
@@ -29,6 +38,4 @@ public interface CommodityService {
    * @return  List
    */
   List<Commodity> findTop5ByOrderByCreateDateDesc();
-
-  List<Commodity> findAll();
-}
+} // end interface CommodityService

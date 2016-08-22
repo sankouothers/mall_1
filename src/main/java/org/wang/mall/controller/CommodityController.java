@@ -32,6 +32,27 @@ public class CommodityController {
   //~ Methods ----------------------------------------------------------------------------------------------------------
 
   /**
+   * commodityListByCreateDate.
+   *
+   * @param   request  HttpServletRequest
+   *
+   * @return  String
+   */
+  @RequestMapping(
+    value  = "/commodityListByCreateDate",
+    method = RequestMethod.GET
+  )
+  public String commodityListByCreateDate(HttpServletRequest request) {
+    List<Commodity> commodityListByCreateDate = commodityService.findTop5ByOrderByCreateDateDesc();
+
+    request.setAttribute("commodityListByCreateDate", commodityListByCreateDate);
+
+    return "commodity/commodityListByCreateDate";
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
    * loadCommodity.
    *
    * @param   request  HttpServletRequest
@@ -48,17 +69,5 @@ public class CommodityController {
     request.setAttribute("commodityListBySales", commodityListBySales);
 
     return "commodity/commodityListBySales";
-  }
-
-  @RequestMapping(
-    value  = "/commodityListByCreateDate",
-    method = RequestMethod.GET
-  )
-  public String commodityListByCreateDate(HttpServletRequest request) {
-    List<Commodity> commodityListByCreateDate = commodityService.findTop5ByOrderByCreateDateDesc();
-
-    request.setAttribute("commodityListByCreateDate", commodityListByCreateDate);
-
-    return "commodity/commodityListByCreateDate";
   }
 } // end class CommodityController

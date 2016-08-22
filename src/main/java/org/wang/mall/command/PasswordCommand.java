@@ -19,16 +19,16 @@ public class PasswordCommand {
 
   private String isQuestion;
   private String name;
-    private String newPassWord;
+  private String newPassWord;
 
   private String noUser;
+  private String page;
   private String passWord;
   private String passWordValidator;
   private String question;
 
   private String requestError;
   private String role;
-  private String page;
 
   //~ Methods ----------------------------------------------------------------------------------------------------------
 
@@ -99,6 +99,17 @@ public class PasswordCommand {
   //~ ------------------------------------------------------------------------------------------------------------------
 
   /**
+   * getter method for page.
+   *
+   * @return  String
+   */
+  public String getPage() {
+    return page;
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
    * getter method for pass word.
    *
    * @return  String
@@ -141,7 +152,6 @@ public class PasswordCommand {
   }
 
   //~ ------------------------------------------------------------------------------------------------------------------
-
 
   /**
    * getter method for role.
@@ -216,6 +226,17 @@ public class PasswordCommand {
    */
   public void setNoUser(String noUser) {
     this.noUser = noUser;
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * setter method for page.
+   *
+   * @param  page  String
+   */
+  public void setPage(String page) {
+    this.page = page;
   }
 
   //~ ------------------------------------------------------------------------------------------------------------------
@@ -309,13 +330,5 @@ public class PasswordCommand {
     command.setRole("Merchant");
 
     return command;
-  }
-
-  public String getPage() {
-    return page;
-  }
-
-  public void setPage(String page) {
-    this.page = page;
   }
 } // end class PasswordCommand

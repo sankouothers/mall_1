@@ -8,10 +8,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
 <c:forEach var="item" items="${commodityList}">
-  <div class="col-sm-6 col-md-2" >
+  <div class="col-sm-6 col-md-2">
     <div class="thumbnail">
         <%--<img src="..." alt="...">--%>
-      <div class="caption" >
+      <div class="caption">
 
         <div class="table" style="margin-bottom: 0px;">
           <table class="table" style="margin-bottom: 0px;">
@@ -37,7 +37,7 @@
         </div>
 
         <p style="margin-bottom: 0px;">
-          <a href="#" class="btn btn-primary" role="button" >商品信息</a>
+          <a href="#" class="btn btn-primary" role="button">商品信息</a>
         </p>
       </div>
     </div>

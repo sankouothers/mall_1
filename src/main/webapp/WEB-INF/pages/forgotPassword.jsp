@@ -34,7 +34,8 @@
           <label for="name" class="col-sm-2 control-label">User Name</label>
 
           <div class="col-sm-10">
-            <form:input id="name" path="name" cssClass="form-control" placeholder="UserName" value="${command.name}" readonly="true"/>
+            <form:input id="name" path="name" cssClass="form-control" placeholder="UserName" value="${command.name}"
+                        readonly="true"/>
             <form:errors path="name" cssClass="alert-danger" element="div"/>
           </div>
         </div>
@@ -46,7 +47,8 @@
           <label for="answer" class="col-sm-2 control-label">Question</label>
 
           <div class="col-sm-10">
-            <form:input id="question" path="question" cssClass="form-control" value="${command.question}" placeholder="Question" readonly="true"/>
+            <form:input id="question" path="question" cssClass="form-control" value="${command.question}"
+                        placeholder="Question" readonly="true"/>
             <form:errors path="question" cssClass="alert-danger" element="div"/>
           </div>
         </div>
@@ -78,7 +80,8 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+            aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="gridSystemModalLabel">通知</h4>
       </div>
       <div class="modal-body">
@@ -102,7 +105,7 @@
         </div>
       </div>
       <div class="modal-footer" id="determine">
-        <button type="button" class="btn btn-primary" >Determine</button>
+        <button type="button" class="btn btn-primary">Determine</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
@@ -113,7 +116,7 @@
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="<c:url value="/bootstrap/js/bootstrap.min.js" />"></script>
 
-<script type="text/javascript">
+<script type="application/javascript">
   var noUser = "${command.noUser}";
   var requestError = "${command.requestError}";
 

@@ -1,10 +1,13 @@
 package org.wang.mall.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Controller;
 
 import org.springframework.ui.Model;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -12,8 +15,6 @@ import org.wang.mall.command.MerchantCommand;
 import org.wang.mall.model.Merchant;
 import org.wang.mall.service.MerchantService;
 import org.wang.mall.util.LoginForm;
-
-import javax.servlet.http.HttpServletRequest;
 
 
 /**
@@ -32,9 +33,10 @@ public class MerchantController {
 
   //~ Methods ----------------------------------------------------------------------------------------------------------
 
-
   /**
    * createConsumer.
+   *
+   * @param   command  MerchantCommand
    *
    * @return  String
    */
@@ -43,8 +45,9 @@ public class MerchantController {
     method = RequestMethod.POST
   )
   public String createMerchant(MerchantCommand command) {
-     Merchant merchant = command.toMerchant(command);
-      merchantService.save(merchant);
+    Merchant merchant = command.toMerchant(command);
+    merchantService.save(merchant);
+
     return "redirect:/consumer/create?create=Y";
   }
 
@@ -76,6 +79,9 @@ public class MerchantController {
   /**
    * toCreateConsumerView.
    *
+   * @param   request  HttpServletRequest
+   * @param   model    Model
+   *
    * @return  String
    */
   @RequestMapping(
@@ -83,19 +89,21 @@ public class MerchantController {
     method = RequestMethod.GET
   )
   public String toCreateMerchantView(HttpServletRequest request, Model model) {
-      MerchantCommand command = new MerchantCommand();
+    MerchantCommand command = new MerchantCommand();
 
-    if (request.getParameter("create") != null && request.getParameter("create").equals("Y")) {
+    if ((request.getParameter("create") != null) && request.getParameter("create").equals("Y")) {
       command.setCreate("Y");
-      model.addAttribute("command",command);
+      model.addAttribute("command", command);
+
       return "/consumer/create";
     }
-      model.addAttribute("command",command);
+
+    model.addAttribute("command", command);
+
     return "/merchant/create";
   }
 
   //~ ------------------------------------------------------------------------------------------------------------------
-
 
   /**
    * toMerchantIndexView.

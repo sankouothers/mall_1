@@ -33,9 +33,10 @@ import org.wang.mall.service.MerchantService;
 @Controller public class MallController {
   //~ Instance fields --------------------------------------------------------------------------------------------------
 
+  @Autowired private CommodityService commodityService;
+
   @Autowired private ConsumerService consumerService;
   @Autowired private MerchantService merchantService;
-  @Autowired private CommodityService commodityService;
 
   //~ Methods ----------------------------------------------------------------------------------------------------------
 
@@ -269,14 +270,25 @@ import org.wang.mall.service.MerchantService;
   public String toLoginView() {
     return "mall";
   }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * toSearchWinView.
+   *
+   * @param   request  HttpServletRequest
+   *
+   * @return  String
+   */
   @RequestMapping(
     value  = "/search",
     method = RequestMethod.GET
   )
   public String toSearchWinView(HttpServletRequest request) {
-    List<Commodity> commodityList =  commodityService.findAll();
+    List<Commodity> commodityList = commodityService.findAll();
 
-    request.setAttribute("commodityList",commodityList);
+    request.setAttribute("commodityList", commodityList);
+
     return "commodity/commodityList";
   }
 

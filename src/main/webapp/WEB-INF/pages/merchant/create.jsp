@@ -21,7 +21,7 @@
 
   <div class="well">
     <h1 class="text-center">
-       商户注册
+      商户注册
     </h1>
     <form:form action="/merchant/create" method="post" cssClass="form-horizontal" commandName="command">
       <form:hidden path="id"/>
@@ -55,7 +55,8 @@
           <label for="passWordValidator" class="col-sm-2 control-label">Confirm password</label>
 
           <div class="col-sm-10">
-            <form:password id="passWordValidator" path="passWordValidator" cssClass="form-control" placeholder="passWord Validator"
+            <form:password id="passWordValidator" path="passWordValidator" cssClass="form-control"
+                           placeholder="passWord Validator"
                            required="true"/>
             <form:errors path="passWordValidator" cssClass="alert-danger" element="div"/>
           </div>
@@ -132,7 +133,8 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+            aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="gridSystemModalLabel">通知</h4>
       </div>
       <div class="modal-body">
@@ -167,7 +169,7 @@
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="<c:url value="/bootstrap/js/bootstrap.min.js" />"></script>
 
-<script type="text/javascript">
+<script type="application/javascript">
   var create = "${command.create}";
 
   if (create == "Y" && create != null) {

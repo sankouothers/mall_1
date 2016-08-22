@@ -47,7 +47,7 @@ public class CategoryController {
     request.setAttribute("categoryList", categoryList);
 
     return "category/categoryList";
-//    return "mall";
+// return "mall";
   }
 
 } // end class CategoryController

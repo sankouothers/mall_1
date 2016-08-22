@@ -9,9 +9,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="zh-CN">
 <head>
-    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-    <jsp:include page="/WEB-INF/common/meta.jsp"/>
-    <title>商户主页</title>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+  <jsp:include page="/WEB-INF/common/meta.jsp"/>
+  <title>商户主页</title>
 
 </head>
 <body>

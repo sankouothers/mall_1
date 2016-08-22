@@ -9,19 +9,19 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="zh-CN">
 <head>
-    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-    <jsp:include page="/WEB-INF/common/meta.jsp"/>
-    <title>密码修改成功</title>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+  <jsp:include page="/WEB-INF/common/meta.jsp"/>
+  <title>密码修改成功</title>
 
 </head>
 <body class="body">
 
 
 <div align="center">
-    <div class="jumbotron">
-        <h3>密码修改成功</h3>
-        <p><a class="btn btn-primary btn-lg" href="login" role="button">返回登录页面</a></p>
-    </div>
+  <div class="jumbotron">
+    <h3>密码修改成功</h3>
+    <p><a class="btn btn-primary btn-lg" href="login" role="button">返回登录页面</a></p>
+  </div>
 </div>
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

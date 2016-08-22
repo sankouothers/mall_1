@@ -3,6 +3,7 @@ package org.wang.mall.service;
 
 import org.wang.mall.model.Merchant;
 
+
 /**
  * Created by ozintel06 on 16/6/21.
  *
@@ -10,12 +11,46 @@ import org.wang.mall.model.Merchant;
  * @version  06/21/2016 11:00
  */
 public interface MerchantService {
+  //~ Methods ----------------------------------------------------------------------------------------------------------
 
-    Merchant findByNameAndPassWord(String name, String password);
+  /**
+   * findByName.
+   *
+   * @param   name  String
+   *
+   * @return  Merchant
+   */
+  Merchant findByName(String name);
 
-    void save(Merchant merchant);
+  //~ ------------------------------------------------------------------------------------------------------------------
 
-    Merchant findByName(String name);
+  /**
+   * findByNameAndPassWord.
+   *
+   * @param   name      String
+   * @param   password  String
+   *
+   * @return  Merchant
+   */
+  Merchant findByNameAndPassWord(String name, String password);
 
-    Merchant findOne(Long id);
-}
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * findOne.
+   *
+   * @param   id  Long
+   *
+   * @return  Merchant
+   */
+  Merchant findOne(Long id);
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * save.
+   *
+   * @param  merchant  Merchant
+   */
+  void save(Merchant merchant);
+} // end interface MerchantService

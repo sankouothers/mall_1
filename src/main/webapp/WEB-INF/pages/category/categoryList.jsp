@@ -15,9 +15,9 @@
   </ul>
 
   <%--<div class="tab-content right">--%>
-    <%--<div role="tabpanel" class="tab-pane" id="home">home</div>--%>
-    <%--<div role="tabpanel" class="tab-pane" id="profile">profile</div>--%>
-    <%--<div role="tabpanel" class="tab-pane" id="messages">messages</div>--%>
-    <%--<div role="tabpanel" class="tab-pane" id="settings">settings</div>--%>
+  <%--<div role="tabpanel" class="tab-pane" id="home">home</div>--%>
+  <%--<div role="tabpanel" class="tab-pane" id="profile">profile</div>--%>
+  <%--<div role="tabpanel" class="tab-pane" id="messages">messages</div>--%>
+  <%--<div role="tabpanel" class="tab-pane" id="settings">settings</div>--%>
   <%--</div>--%>
 </div>

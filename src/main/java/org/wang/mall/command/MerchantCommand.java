@@ -28,6 +28,8 @@ public class MerchantCommand {
 
   private String answer;
 
+  private String create = "F";
+
   private Long id;
 
   private String IDcard;
@@ -44,16 +46,6 @@ public class MerchantCommand {
 
   private String userName;
 
-  public String getCreate() {
-    return create;
-  }
-
-  public void setCreate(String create) {
-    this.create = create;
-  }
-
-  private String create = "F";
-
   //~ Methods ----------------------------------------------------------------------------------------------------------
 
   /**
@@ -63,6 +55,17 @@ public class MerchantCommand {
    */
   public String getAnswer() {
     return answer;
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * getter method for create.
+   *
+   * @return  String
+   */
+  public String getCreate() {
+    return create;
   }
 
   //~ ------------------------------------------------------------------------------------------------------------------
@@ -167,6 +170,17 @@ public class MerchantCommand {
   //~ ------------------------------------------------------------------------------------------------------------------
 
   /**
+   * setter method for create.
+   *
+   * @param  create  String
+   */
+  public void setCreate(String create) {
+    this.create = create;
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
    * setter method for id.
    *
    * @param  id  Long
@@ -252,6 +266,15 @@ public class MerchantCommand {
     this.userName = userName;
   }
 
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * toMerchant.
+   *
+   * @param   command  MerchantCommand
+   *
+   * @return  Merchant
+   */
   public Merchant toMerchant(MerchantCommand command) {
     Merchant merchant = new Merchant();
     merchant.setName(command.getName());
@@ -262,6 +285,7 @@ public class MerchantCommand {
     merchant.setCreateDate(new Date());
     merchant.setPassWord(command.getPassWord());
     merchant.setUserName(command.getUserName());
+
     return merchant;
   }
 } // end class MerchantCommand

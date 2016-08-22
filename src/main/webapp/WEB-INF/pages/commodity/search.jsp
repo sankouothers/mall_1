@@ -21,7 +21,7 @@
     <div class="well center-block">
       <div class="row">
         <div class="col-lg-6" style="float:right;">
-          <div class="input-group" >
+          <div class="input-group">
             <input type="text" id="query" class="form-control input-lg" placeholder="Search for...">
       <span class="input-group-btn">
         <button class="btn btn-primary btn-lg" type="button" id="search">Search</button>
@@ -31,9 +31,9 @@
       </div><!-- /.row -->
     </div>
 
-      <div class="row" id="commodityList">
+    <div class="row" id="commodityList">
 
-      </div>
+    </div>
   </div>
 
 
@@ -44,11 +44,11 @@
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="<c:url value="/bootstrap/js/bootstrap.min.js" />"></script>
 <script type="application/javascript">
-$(document).ready(function () {
-  $("#commodityList").load("search",function (response) {
-    $("#commodityList").html(response);
+  $(document).ready(function () {
+    $("#commodityList").load("search", function (response) {
+      $("#commodityList").html(response);
+    })
   })
-})
 </script>
 </body>
 </html>
