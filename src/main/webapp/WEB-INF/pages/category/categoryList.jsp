@@ -7,8 +7,17 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
-<ul class="nav nav-pills nav-stacked">
-    <li role="presentation"><a class="btn btn-default btn-lg btn-block"></a></li>
-    <li role="presentation"><a class="btn btn-default btn-lg btn-block"></a></li>
-    <li role="presentation"><a class="btn btn-default btn-lg btn-block"></a></li>
-</ul>
+<div>
+  <ul class="nav nav-pills nav-stacked left" role="tablist">
+    <c:forEach var="item" items="${categoryList}">
+      <li role="presentation"><a href="" aria-controls="home" role="tab" data-toggle="pill">${item.name}</a></li>
+    </c:forEach>
+  </ul>
+
+  <%--<div class="tab-content right">--%>
+    <%--<div role="tabpanel" class="tab-pane" id="home">home</div>--%>
+    <%--<div role="tabpanel" class="tab-pane" id="profile">profile</div>--%>
+    <%--<div role="tabpanel" class="tab-pane" id="messages">messages</div>--%>
+    <%--<div role="tabpanel" class="tab-pane" id="settings">settings</div>--%>
+  <%--</div>--%>
+</div>
