@@ -70,4 +70,16 @@ public class CommodityController {
 
     return "commodity/commodityListBySales";
   }
+
+  @RequestMapping(
+    value  = "/commodityList",
+    method = RequestMethod.GET
+  )
+  public String commodityList(HttpServletRequest request) {
+    List<Commodity> commodityList = commodityService.findAll();
+
+    request.setAttribute("commodityList", commodityList);
+
+    return "commodity/commodityList";
+  }
 } // end class CommodityController

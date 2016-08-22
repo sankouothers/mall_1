@@ -285,11 +285,8 @@ import org.wang.mall.service.MerchantService;
     method = RequestMethod.GET
   )
   public String toSearchWinView(HttpServletRequest request) {
-    List<Commodity> commodityList = commodityService.findAll();
 
-    request.setAttribute("commodityList", commodityList);
-
-    return "commodity/commodityList";
+    return "commodity/search";
   }
 
 } // end class MallController

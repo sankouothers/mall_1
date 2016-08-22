@@ -45,10 +45,10 @@
 <script src="<c:url value="/bootstrap/js/bootstrap.min.js" />"></script>
 <script type="application/javascript">
   $(document).ready(function () {
-    $("#commodityList").load("search", function (response) {
+    $("#commodityList").load("commodity/commodityList", function (response) {
       $("#commodityList").html(response);
     })
-  })
+  });
 </script>
 </body>
 </html>
