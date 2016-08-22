@@ -4,12 +4,16 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import org.wang.mall.model.Category;
 import org.wang.mall.model.Commodity;
+import org.wang.mall.service.CategoryService;
 
 
 /**
@@ -21,6 +25,10 @@ import org.wang.mall.model.Commodity;
 @Controller
 @RequestMapping(value = "/category")
 public class CategoryController {
+  //~ Instance fields --------------------------------------------------------------------------------------------------
+
+  @Autowired private CategoryService categoryService;
+
   //~ Methods ----------------------------------------------------------------------------------------------------------
 
   /**
@@ -34,8 +42,12 @@ public class CategoryController {
     value  = "/categoryList",
     method = RequestMethod.GET
   )
-  public String commodityListBySales(HttpServletRequest request) {
+  public String categoryListBySales(HttpServletRequest request) {
+    List<Category> categoryList = categoryService.findAll();
+    request.setAttribute("categoryList", categoryList);
+
     return "category/categoryList";
+//    return "mall";
   }
 
-}
+} // end class CategoryController
