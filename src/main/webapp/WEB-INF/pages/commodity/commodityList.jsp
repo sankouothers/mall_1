@@ -37,7 +37,7 @@
         </div>
 
         <p style="margin-bottom: 0px;">
-          <a href="#" class="btn btn-primary" role="button">商品信息</a>
+          <a href="commodity/info?id=${item.id}" class="btn btn-primary" role="button">商品信息</a>
         </p>
       </div>
     </div>

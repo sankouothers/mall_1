@@ -49,4 +49,6 @@ public interface CommodityService {
    * @return  List
    */
   List<Commodity> findTop5ByOrderByCreateDateDesc();
+
+  Commodity findOne(Long id);
 } // end interface CommodityService

@@ -63,4 +63,9 @@ import org.wang.mall.service.CommodityService;
   @Override public List<Commodity> findTop5ByOrderByCreateDateDesc() {
     return commodityRepository.findTop5ByOrderByCreateDateDesc();
   }
+
+  @Override
+  public Commodity findOne(Long id) {
+    return commodityRepository.findOne(id);
+  }
 } // end class CommodityServiceImpl

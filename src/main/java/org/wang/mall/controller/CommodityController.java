@@ -8,9 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Controller;
 
+import org.springframework.ui.Model;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import org.wang.mall.command.CommodityInfoCommand;
 import org.wang.mall.model.Commodity;
 import org.wang.mall.service.CommodityService;
 
@@ -98,5 +101,30 @@ public class CommodityController {
     request.setAttribute("commodityListBySales", commodityListBySales);
 
     return "commodity/commodityListBySales";
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * toInfoView.
+   *
+   * @param   request  HttpServletRequest
+   * @param   id       Long
+   * @param   model    Model
+   *
+   * @return  String
+   */
+  @RequestMapping(
+    value  = "/info",
+    method = RequestMethod.GET
+  )
+  public String toInfoView(HttpServletRequest request, Long id, Model model) {
+    Commodity commodity = commodityService.findOne(id);
+
+    CommodityInfoCommand command = new CommodityInfoCommand(commodity);
+
+    model.addAttribute("command", command);
+
+    return "commodity/info";
   }
 } // end class CommodityController
