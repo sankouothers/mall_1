@@ -15,6 +15,7 @@ import org.wang.mall.command.MerchantCommand;
 import org.wang.mall.model.Merchant;
 import org.wang.mall.service.MerchantService;
 import org.wang.mall.util.LoginForm;
+import org.wang.mall.util.Parameter;
 
 
 /**
@@ -56,6 +57,7 @@ public class MerchantController {
   /**
    * login.
    *
+   * @param   request    HttpServletRequest
    * @param   loginForm  LoginForm
    *
    * @return  String
@@ -64,10 +66,13 @@ public class MerchantController {
     value  = "/login",
     method = RequestMethod.POST
   )
-  public String login(LoginForm loginForm) {
+  public String login(HttpServletRequest request, LoginForm loginForm) {
     Merchant merchant = merchantService.findByNameAndPassWord(loginForm.getName(), loginForm.getPassword());
 
     if (merchant != null) {
+      request.getSession().setAttribute(Parameter.USER_NAME_KEY, merchant.getName());
+      request.getSession().setAttribute(Parameter.USER_ID_KEY, merchant.getId());
+
       return "redirect:/merchant/index";
     }
 

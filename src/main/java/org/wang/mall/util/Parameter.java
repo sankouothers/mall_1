@@ -2,9 +2,9 @@ package org.wang.mall.util;
 
 
 /**
- * Created by ozintel06 on 16/8/16.
+ * * Created by ozintel06 on 16/8/16. * *
  *
- * @author   <a href="mailto:chenglong.du@ozstrategy.com">Chenglong Du</a>
+ * @author   <a href="mailto:chenglong.du@ozstrategy.com">Chenglong Du</a> *
  * @version  08/16/2016 17:27
  */
 public class Parameter {
@@ -27,4 +27,10 @@ public class Parameter {
 
   /** TODO: DOCUMENT ME! */
   public static final String PAGE_EDIT = "edit";
-}
+
+  /** TODO: DOCUMENT ME! */
+  public static final String USER_NAME_KEY = "LoggedInUserName";
+
+  /** TODO: DOCUMENT ME! */
+  public static final String USER_ID_KEY = "LoggedInUserID";
+} // end class Parameter

@@ -1,5 +1,7 @@
 package org.wang.mall.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Controller;
@@ -12,6 +14,7 @@ import org.wang.mall.model.Merchant;
 import org.wang.mall.service.ConsumerService;
 import org.wang.mall.service.MerchantService;
 import org.wang.mall.util.LoginForm;
+import org.wang.mall.util.Parameter;
 
 
 /**
@@ -30,6 +33,7 @@ import org.wang.mall.util.LoginForm;
   /**
    * login.
    *
+   * @param   request    HttpServletRequest
    * @param   loginForm  LoginForm
    *
    * @return  String
@@ -38,10 +42,13 @@ import org.wang.mall.util.LoginForm;
     value  = "/login",
     method = RequestMethod.POST
   )
-  public String login(LoginForm loginForm) {
+  public String login(HttpServletRequest request, LoginForm loginForm) {
     Consumer consumer = consumerService.findByNameAndPassWord(loginForm.getName(), loginForm.getPassword());
 
     if (consumer != null) {
+      request.getSession().setAttribute(Parameter.USER_NAME_KEY, consumer.getName());
+      request.getSession().setAttribute(Parameter.USER_ID_KEY, consumer.getId());
+
       return "redirect:/mall";
     }
 

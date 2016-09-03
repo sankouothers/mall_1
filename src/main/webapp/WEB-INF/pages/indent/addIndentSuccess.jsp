@@ -17,23 +17,7 @@
 <jsp:include page="/WEB-INF/common/nav.jsp"/>
 <section class="content">
   <div class="container">
-
-    <div class="row">
-      <div class="col-lg-5">
-
-      </div>
-      <div class="col-lg-7">
-        <ul class="list-group">
-          <li class="list-group-item">名称 ${command.name}</li>
-          <li class="list-group-item">品牌: ${command.brand}</li>
-          <li class="list-group-item">类别: ${command.category}</li>
-          <li class="list-group-item">功能: ${command.effect}</li>
-          <li class="list-group-item">价格: ${command.price}</li>
-        </ul>
-        <a class="btn btn-primary" methods="get" href="/indent/create?id=${command.id}">加入购物车</a>
-        <button class="btn btn-primary">购买</button>
-      </div>
-    </div>
+    <h3>商品已成功加入购物车</h3>
   </div>
 
 </section>
