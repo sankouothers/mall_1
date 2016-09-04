@@ -93,6 +93,27 @@ public class IndentController {
   //~ ------------------------------------------------------------------------------------------------------------------
 
   /**
+   * buy.
+   *
+   * @param   model          Model
+   * @param   indentCommand  IndentCommand
+   *
+   * @return  String
+   */
+  @RequestMapping(
+    value  = "/buy",
+    method = RequestMethod.POST
+  )
+  public String buy(Model model, IndentCommand indentCommand) {
+    Indent indent = indentCommand.toIndent(indentCommand);
+    indentService.save(indent);
+
+    return "redirect:/indent/buySuccess";
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
    * toShoppingCartView.
    *
    * @return  String
@@ -103,6 +124,48 @@ public class IndentController {
   )
   public String toAddIndentSuccessView() {
     return "indent/addIndentSuccess";
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * toBuySuccessView.
+   *
+   * @return  String
+   */
+  @RequestMapping(
+    value  = "/buySuccess",
+    method = RequestMethod.GET
+  )
+  public String toBuySuccessView() {
+    return "indent/buySuccess";
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * toBuyView.
+   *
+   * @param   model  Model
+   * @param   id     Long
+   *
+   * @return  String
+   */
+  @RequestMapping(
+    value  = "/buy",
+    method = RequestMethod.GET
+  )
+  public String toBuyView(Model model, Long id) {
+    Indent        indent      = indentService.findOne(id);
+    Consumer      consumer    = indent.getConsumer();
+    List<Address> addressList = addressService.finByConsumer(consumer);
+
+    IndentCommand indentCommand = new IndentCommand();
+    indentCommand.toBuy(indent, addressList);
+
+    model.addAttribute("command", indentCommand);
+
+    return "indent/buy";
   }
 
   //~ ------------------------------------------------------------------------------------------------------------------
@@ -127,7 +190,7 @@ public class IndentController {
     if (indentList != null) {
       for (Indent indent : indentList) {
         IndentCommand indentCommand = new IndentCommand();
-        indentCommand.toShoppingCar(indent);
+        indentCommand.toShoppingCart(indent);
         indentCommandList.add(indentCommand);
       }
 
@@ -140,7 +203,7 @@ public class IndentController {
 
     shoppingCarCommand.setNotIndent("true");
 
-    return "/indent/shoppingCart";
+    return "indent/shoppingCart";
   }
 
 } // end class IndentController

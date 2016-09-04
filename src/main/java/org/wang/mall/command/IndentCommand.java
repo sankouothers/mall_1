@@ -1,5 +1,8 @@
 package org.wang.mall.command;
 
+import java.text.ParsePosition;
+
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -20,15 +23,19 @@ import org.wang.mall.util.Util;
 public class IndentCommand {
   //~ Instance fields --------------------------------------------------------------------------------------------------
 
-  private Long addressId;
+  private Long          addressId;
+  private List<Address> addressList;
 
   private Long    commodityId;
   private String  commodityName;
+  private Long    consumerId;
   private String  createDate;
   private Long    id;
+  private Long    merchantId;
   private String  phoneNumber;
   private Integer price;
   private Integer totalNumber;
+  private Integer totalPrice;
 
   private String userName;
 
@@ -48,6 +55,17 @@ public class IndentCommand {
    */
   public Long getAddressId() {
     return addressId;
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * getter method for address list.
+   *
+   * @return  List
+   */
+  public List<Address> getAddressList() {
+    return addressList;
   }
 
   //~ ------------------------------------------------------------------------------------------------------------------
@@ -74,6 +92,18 @@ public class IndentCommand {
 
   //~ ------------------------------------------------------------------------------------------------------------------
 
+
+  /**
+   * getter method for consumer id.
+   *
+   * @return  Long
+   */
+  public Long getConsumerId() {
+    return consumerId;
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
   /**
    * getter method for create date.
    *
@@ -92,6 +122,17 @@ public class IndentCommand {
    */
   public Long getId() {
     return id;
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * getter method for merchant id.
+   *
+   * @return  Long
+   */
+  public Long getMerchantId() {
+    return merchantId;
   }
 
   //~ ------------------------------------------------------------------------------------------------------------------
@@ -130,6 +171,17 @@ public class IndentCommand {
   //~ ------------------------------------------------------------------------------------------------------------------
 
   /**
+   * getter method for total price.
+   *
+   * @return  Integer
+   */
+  public Integer getTotalPrice() {
+    return totalPrice;
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
    * getter method for user name.
    *
    * @return  String
@@ -152,12 +204,45 @@ public class IndentCommand {
   //~ ------------------------------------------------------------------------------------------------------------------
 
   /**
+   * setter method for address list.
+   *
+   * @param  addressList  List
+   */
+  public void setAddressList(List<Address> addressList) {
+    this.addressList = addressList;
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
    * setter method for commodity id.
    *
    * @param  commodityId  Long
    */
   public void setCommodityId(Long commodityId) {
     this.commodityId = commodityId;
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * setter method for commodity name.
+   *
+   * @param  commodityName  String
+   */
+  public void setCommodityName(String commodityName) {
+    this.commodityName = commodityName;
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * setter method for consumer id.
+   *
+   * @param  consumerId  Long
+   */
+  public void setConsumerId(Long consumerId) {
+    this.consumerId = consumerId;
   }
 
   //~ ------------------------------------------------------------------------------------------------------------------
@@ -185,12 +270,34 @@ public class IndentCommand {
   //~ ------------------------------------------------------------------------------------------------------------------
 
   /**
+   * setter method for merchant id.
+   *
+   * @param  merchantId  Long
+   */
+  public void setMerchantId(Long merchantId) {
+    this.merchantId = merchantId;
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
    * setter method for phone number.
    *
    * @param  phoneNumber  String
    */
   public void setPhoneNumber(String phoneNumber) {
     this.phoneNumber = phoneNumber;
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * setter method for price.
+   *
+   * @param  price  Integer
+   */
+  public void setPrice(Integer price) {
+    this.price = price;
   }
 
   //~ ------------------------------------------------------------------------------------------------------------------
@@ -207,11 +314,128 @@ public class IndentCommand {
   //~ ------------------------------------------------------------------------------------------------------------------
 
   /**
+   * setter method for total price.
+   *
+   * @param  totalPrice  Integer
+   */
+  public void setTotalPrice(Integer totalPrice) {
+    this.totalPrice = totalPrice;
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * setter method for user name.
+   *
+   * @param  userName  String
+   */
+  public void setUserName(String userName) {
+    this.userName = userName;
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * toBuy.
+   *
+   * @param  indent       Indent
+   * @param  addressList  List
+   */
+  public void toBuy(Indent indent, List<Address> addressList) {
+    List<Address> list = new ArrayList<Address>();
+    List<Address> a    = new ArrayList<Address>();
+
+    for (Address address : addressList) {
+      if (address.isDefaultAddress()) {
+        list.add(address);
+      } else {
+        a.add(address);
+      }
+    }
+
+    list.addAll(a);
+    this.setAddressList(list);
+    this.setId(indent.getId());
+    this.setTotalNumber(1);
+    this.setCreateDate(Util.sdf.format(indent.getCreateDate()));
+
+    if (indent.getCommodity() != null) {
+      this.setCommodityName(indent.getCommodity().getName());
+      this.setCommodityId(indent.getCommodity().getId());
+      this.setPrice(indent.getCommodity().getPrice());
+      this.setTotalPrice(indent.getCommodity().getPrice());
+    }
+
+    if (indent.getMerchant() != null) {
+      this.setMerchantId(indent.getMerchant().getId());
+    }
+
+    if (indent.getConsumer() != null) {
+      this.setUserName(indent.getConsumer().getName());
+      this.setConsumerId(indent.getConsumer().getId());
+      this.setPhoneNumber(indent.getConsumer().getPhoneNumber());
+    }
+  } // end method toBuy
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * toIndent.
+   *
+   * @param   indentCommand  IndentCommand
+   *
+   * @return  Indent
+   */
+  public Indent toIndent(IndentCommand indentCommand) {
+    Indent indent = new Indent();
+
+    if (indentCommand.getConsumerId() != null) {
+      Consumer consumer = new Consumer();
+      consumer.setId(indentCommand.getConsumerId());
+      indent.setConsumer(consumer);
+    }
+
+    if (indentCommand.getCommodityId() != null) {
+      Commodity commodity = new Commodity();
+      commodity.setId(indentCommand.getCommodityId());
+      indent.setCommodity(commodity);
+    }
+
+    if (indentCommand.getAddressId() != null) {
+      Address address = new Address();
+      address.setId(indentCommand.getAddressId());
+      indent.setAddress(address);
+    }
+
+    if (indentCommand.getMerchantId() != null) {
+      Merchant merchant = new Merchant();
+      merchant.setId(indentCommand.getMerchantId());
+      indent.setMerchant(merchant);
+    }
+
+    indent.setPhoneNumber(indentCommand.getPhoneNumber());
+    indent.setShipping(false);
+    indent.setPickup(false);
+    indent.setUserName(indentCommand.getUserName());
+    indent.setConfirm(true);
+
+
+    indent.setCreateDate(Util.sdf.parse(indentCommand.getCreateDate(), new ParsePosition(0)));
+    indent.setId(indentCommand.getId());
+    indent.setTotalNumber(indentCommand.getTotalNumber());
+    indent.setTotalPrice(indentCommand.getTotalPrice());
+
+    return indent;
+  } // end method toIndent
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
    * toShoppingCar.
    *
    * @param  indent  Indent
    */
-  public void toShoppingCar(Indent indent) {
+  public void toShoppingCart(Indent indent) {
     this.setId(indent.getId());
     this.setCreateDate(Util.sdf.format(indent.getCreateDate()));
 
@@ -223,23 +447,5 @@ public class IndentCommand {
     if (indent.getConsumer() != null) {
       this.setUserName(indent.getConsumer().getName());
     }
-  }
-
-  //~ ------------------------------------------------------------------------------------------------------------------
-
-  private void setCommodityName(String commodityName) {
-    this.commodityName = commodityName;
-  }
-
-  //~ ------------------------------------------------------------------------------------------------------------------
-
-  private void setPrice(Integer price) {
-    this.price = price;
-  }
-
-  //~ ------------------------------------------------------------------------------------------------------------------
-
-  private void setUserName(String userName) {
-    this.userName = userName;
   }
 } // end class IndentCommand

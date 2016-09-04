@@ -11,7 +11,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
   <jsp:include page="/WEB-INF/common/meta.jsp"/>
-  <title>商品信息</title>
+  <title>购物车</title>
 </head>
 <body class="body">
 <jsp:include page="/WEB-INF/common/nav.jsp"/>
@@ -43,7 +43,7 @@
                 <td>${item.price}</td>
                 <td>${item.createDate}</td>
                 <td>
-                  <a class="btn btn-primary">立即购买</a>
+                  <a href="/indent/buy?id=${item.id}" class="btn btn-primary">立即购买</a>
                   <a class="btn btn-primary">撤销订单</a>
                 </td>
               </tr>

@@ -26,9 +26,20 @@ public interface IndentService {
   //~ ------------------------------------------------------------------------------------------------------------------
 
   /**
+   * findOne.
+   *
+   * @param   id  Long
+   *
+   * @return  Indent
+   */
+  Indent findOne(Long id);
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
    * save.
    *
    * @param  indent  Indent
    */
   void save(Indent indent);
-}
+} // end interface IndentService

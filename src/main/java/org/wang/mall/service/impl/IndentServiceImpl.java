@@ -38,9 +38,18 @@ import org.wang.mall.service.IndentService;
   //~ ------------------------------------------------------------------------------------------------------------------
 
   /**
+   * @see  org.wang.mall.service.IndentService#findOne(java.lang.Long)
+   */
+  @Override public Indent findOne(Long id) {
+    return indentRepository.findOne(id);
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
    * @see  org.wang.mall.service.IndentService#save(org.wang.mall.model.Indent)
    */
   @Override public void save(Indent indent) {
     indentRepository.save(indent);
   }
-}
+} // end class IndentServiceImpl
