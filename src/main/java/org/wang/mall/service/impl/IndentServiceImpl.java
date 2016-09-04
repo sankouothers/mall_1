@@ -1,6 +1,8 @@
 package org.wang.mall.service.impl;
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
@@ -25,6 +27,15 @@ import org.wang.mall.service.IndentService;
   @Autowired IndentRepository indentRepository;
 
   //~ Methods ----------------------------------------------------------------------------------------------------------
+
+  /**
+   * @see  org.wang.mall.service.IndentService#findByIsConfirm(boolean)
+   */
+  @Override public List<Indent> findByIsConfirm(boolean isConfirm) {
+    return indentRepository.findByIsConfirm(isConfirm);
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
 
   /**
    * @see  org.wang.mall.service.IndentService#save(org.wang.mall.model.Indent)

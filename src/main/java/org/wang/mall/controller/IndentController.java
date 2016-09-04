@@ -1,6 +1,8 @@
 package org.wang.mall.controller;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -13,9 +15,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import org.wang.mall.command.IndentCommand;
+import org.wang.mall.command.ShoppingCarCommand;
+import org.wang.mall.model.Address;
 import org.wang.mall.model.Commodity;
 import org.wang.mall.model.Consumer;
 import org.wang.mall.model.Indent;
+import org.wang.mall.service.AddressService;
 import org.wang.mall.service.CommodityService;
 import org.wang.mall.service.ConsumerService;
 import org.wang.mall.service.IndentService;
@@ -33,6 +39,9 @@ import org.wang.mall.util.Parameter;
 @RequestMapping(value = "/indent")
 public class IndentController {
   //~ Instance fields --------------------------------------------------------------------------------------------------
+
+  /** TODO: DOCUMENT ME! */
+  @Autowired AddressService addressService;
 
   /** TODO: DOCUMENT ME! */
   @Autowired CommodityService commodityService;
@@ -71,6 +80,9 @@ public class IndentController {
       indent.setCreateDate(new Date());
       indent.setCommodity(commodity);
       indent.setConsumer(consumer);
+      indent.setConfirm(true);
+      indent.setPickup(true);
+      indent.setShipping(false);
 
       indentService.save(indent);
     }
@@ -89,8 +101,46 @@ public class IndentController {
     value  = "/addIndentSuccess",
     method = RequestMethod.GET
   )
-  public String toShoppingCartView() {
+  public String toAddIndentSuccessView() {
     return "indent/addIndentSuccess";
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * toShoppingCartView.
+   *
+   * @param   request  HttpServletRequest
+   * @param   model    Model
+   *
+   * @return  String
+   */
+  @RequestMapping(
+    value  = "/shoppingCart",
+    method = RequestMethod.GET
+  )
+  public String toShoppingCartView(HttpServletRequest request, Model model) {
+    ShoppingCarCommand  shoppingCarCommand = new ShoppingCarCommand();
+    List<IndentCommand> indentCommandList  = new ArrayList<IndentCommand>();
+    List<Indent>        indentList         = indentService.findByIsConfirm(false);
+
+    if (indentList != null) {
+      for (Indent indent : indentList) {
+        IndentCommand indentCommand = new IndentCommand();
+        indentCommand.toShoppingCar(indent);
+        indentCommandList.add(indentCommand);
+      }
+
+      shoppingCarCommand.setIndentCommandList(indentCommandList);
+      shoppingCarCommand.setNotIndent("false");
+      model.addAttribute("command", shoppingCarCommand);
+
+      return "indent/shoppingCart";
+    }
+
+    shoppingCarCommand.setNotIndent("true");
+
+    return "/indent/shoppingCart";
   }
 
 } // end class IndentController

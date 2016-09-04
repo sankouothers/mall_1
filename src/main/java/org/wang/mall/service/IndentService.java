@@ -1,5 +1,7 @@
 package org.wang.mall.service;
 
+import java.util.List;
+
 import org.wang.mall.model.Indent;
 
 
@@ -11,6 +13,17 @@ import org.wang.mall.model.Indent;
  */
 public interface IndentService {
   //~ Methods ----------------------------------------------------------------------------------------------------------
+
+  /**
+   * findByIsConfirm.
+   *
+   * @param   isConfirm  boolean
+   *
+   * @return  List
+   */
+  List<Indent> findByIsConfirm(boolean isConfirm);
+
+  //~ ------------------------------------------------------------------------------------------------------------------
 
   /**
    * save.
