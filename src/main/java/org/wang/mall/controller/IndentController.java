@@ -155,7 +155,9 @@ public class IndentController {
     value  = "/buy",
     method = RequestMethod.GET
   )
-  public String toBuyView(Model model, Long id) {
+  public String toBuyView(HttpServletRequest request ,Model model, Long id) {
+    String createAddress = request.getParameter("createAddress");
+
     Indent        indent      = indentService.findOne(id);
     Consumer      consumer    = indent.getConsumer();
     List<Address> addressList = addressService.finByConsumer(consumer);
@@ -163,6 +165,9 @@ public class IndentController {
     IndentCommand indentCommand = new IndentCommand();
     indentCommand.toBuy(indent, addressList);
 
+    if (createAddress != null){
+      indentCommand.setCreateAddress(createAddress);
+    }
     model.addAttribute("command", indentCommand);
 
     return "indent/buy";

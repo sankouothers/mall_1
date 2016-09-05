@@ -34,4 +34,14 @@ import org.wang.mall.service.AddressService;
   @Override public List<Address> finByConsumer(Consumer consumer) {
     return addressRepository.findByConsumer(consumer);
   }
+
+  @Override
+  public void save(Address address) {
+    addressRepository.save(address);
+  }
+
+  @Override
+  public void setIsDefaultAddress(boolean b, Consumer consumer) {
+    addressRepository.setIsDefaultAddress(b,consumer);
+  }
 }

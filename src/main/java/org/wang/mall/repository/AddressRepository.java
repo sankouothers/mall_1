@@ -2,6 +2,9 @@ package org.wang.mall.repository;
 
 import java.util.List;
 
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 import org.wang.mall.model.Address;
@@ -14,7 +17,7 @@ import org.wang.mall.model.Consumer;
  * @author   <a href="mailto:chenglong.du@ozstrategy.com">Chenglong Du</a>
  * @version  09/05/2016 03:11
  */
-public interface AddressRepository extends CrudRepository<Address, Long> {
+public interface AddressRepository extends CrudRepository<Address, Long>,JpaSpecificationExecutor {
   //~ Methods ----------------------------------------------------------------------------------------------------------
 
   /**
@@ -25,4 +28,12 @@ public interface AddressRepository extends CrudRepository<Address, Long> {
    * @return  List
    */
   List<Address> findByConsumer(Consumer consumer);
+
+
+
+  @Modifying
+  @Query("update Address a set a.isDefaultAddress = ?1 where a.consumer= ?2")
+  int setIsDefaultAddress(Boolean isDefaultAddress,Consumer consumer);
+
+
 }

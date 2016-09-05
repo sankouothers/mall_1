@@ -33,7 +33,7 @@
 
       <spring:bind path="id">
         <div class="form-group ${status.error ? 'has-error' : ''}">
-          <label for="id" class="col-sm-2 control-label">商品名称</label>
+          <label for="id" class="col-sm-2 control-label">订单编号</label>
 
           <div class="col-sm-10">
             <form:input id="id" path="id" cssClass="form-control"
@@ -142,18 +142,88 @@
       <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
           <button type="submit" class="btn btn-primary">立即购买</button>
+          <button type="button" class="btn btn-primary" id="indent">添加新地址</button>
         </div>
       </div>
     </form:form>
   </div>
 </div>
 
+<div class="modal fade" role="dialog" aria-labelledby="gridSystemModalLabel" id="createIndentForm">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+            aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="gridSystemModalLabel">添加新地址</h4>
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid">
+          <form class="form-horizontal" role="form" action="/address/create" method="post">
+            <input type="hidden" name="consumerId" value="${command.consumerId}">
+            <input type="hidden" name="indentId" value="${command.id}">
+            <div class="form-group">
+              <label for="address" class="col-sm-2 control-label">地址</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="address" name="address">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col-sm-offset-2 col-sm-10">
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" id="defaultAddress" name="defaultAddress" value="true">设为默认地址
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-primary">添加新地址</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <%--<div class="modal-footer">--%>
+        <%--<button type="button" class="btn btn-primary" id="determine">Determine</button>--%>
+      <%--</div>--%>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade" role="dialog" aria-labelledby="gridSystemModalLabel" id="createAddress">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+            aria-hidden="true">&times;</span></button>
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid">
+
+          <div class="row">
+            <div class="col-sm-9">
+              <div class="row">
+                <div class="col-xs-8 col-sm-6">
+                  添加地址成功
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="<c:url value="/bootstrap/js/bootstrap.min.js" />"></script>
 
-<script type="text/javascript">
+<script type="application/javascript">
   $("#totalNumber").change(function () {
     var count = $("#totalNumber").val();
     var price = $("#price").val();
@@ -161,6 +231,18 @@
     $("#totalPrice").val(count * price);
   })
 
+  var createAddress = "${command.createAddress}";
+  if (createAddress == "true" && createAddress != null) {
+    $('#createAddress').modal();
+  }
+
+  $('#indent').click(function () {
+    $('#createIndentForm').modal();
+  })
+
+  $('#determine').click(function () {
+    location.href = "/login";
+  })
 </script>
 
 </body>

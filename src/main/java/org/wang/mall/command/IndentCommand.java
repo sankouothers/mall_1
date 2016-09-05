@@ -28,6 +28,7 @@ public class IndentCommand {
 
   private Long    commodityId;
   private String  commodityName;
+  private String  createAddress;
   private Long    consumerId;
   private String  createDate;
   private Long    id;
@@ -447,5 +448,13 @@ public class IndentCommand {
     if (indent.getConsumer() != null) {
       this.setUserName(indent.getConsumer().getName());
     }
+  }
+
+  public String getCreateAddress() {
+    return createAddress;
+  }
+
+  public void setCreateAddress(String createAddress) {
+    this.createAddress = createAddress;
   }
 } // end class IndentCommand

@@ -23,4 +23,8 @@ public interface AddressService {
    * @return  List
    */
   List<Address> finByConsumer(Consumer consumer);
+
+  void save(Address address);
+
+  void setIsDefaultAddress(boolean b, Consumer consumer);
 }
