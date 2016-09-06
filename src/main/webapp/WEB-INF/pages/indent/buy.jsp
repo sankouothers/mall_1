@@ -125,11 +125,11 @@
         </div>
       </spring:bind>
 
-      <spring:bind path="addressList">
+      <spring:bind path="addressId">
         <div class="form-group ${status.error ? 'has-error' : ''}">
-          <label for="totalPrice" class="col-sm-2 control-label">送货地址</label>
+          <label for="addressId" class="col-sm-2 control-label">送货地址</label>
           <div class="col-sm-10">
-            <select class="form-control" name="addressList">
+            <select class="form-control" name="addressId" id="addressId">
               <c:forEach items="${command.addressList}" var="item">
                 <option value="${item.id}"> ${item.address}</option>
               </c:forEach>
@@ -187,7 +187,7 @@
         </div>
       </div>
       <%--<div class="modal-footer">--%>
-        <%--<button type="button" class="btn btn-primary" id="determine">Determine</button>--%>
+      <%--<button type="button" class="btn btn-primary" id="determine">Determine</button>--%>
       <%--</div>--%>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->

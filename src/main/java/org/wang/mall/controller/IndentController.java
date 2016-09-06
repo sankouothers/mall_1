@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import org.wang.mall.command.AllIndentCommand;
 import org.wang.mall.command.IndentCommand;
 import org.wang.mall.command.ShoppingCarCommand;
 import org.wang.mall.model.Address;
@@ -80,8 +81,8 @@ public class IndentController {
       indent.setCreateDate(new Date());
       indent.setCommodity(commodity);
       indent.setConsumer(consumer);
-      indent.setConfirm(true);
-      indent.setPickup(true);
+      indent.setConfirm(false);
+      indent.setPickup(false);
       indent.setShipping(false);
 
       indentService.save(indent);
@@ -146,8 +147,9 @@ public class IndentController {
   /**
    * toBuyView.
    *
-   * @param   model  Model
-   * @param   id     Long
+   * @param   request  HttpServletRequest
+   * @param   model    Model
+   * @param   id       Long
    *
    * @return  String
    */
@@ -155,7 +157,7 @@ public class IndentController {
     value  = "/buy",
     method = RequestMethod.GET
   )
-  public String toBuyView(HttpServletRequest request ,Model model, Long id) {
+  public String toBuyView(HttpServletRequest request, Model model, Long id) {
     String createAddress = request.getParameter("createAddress");
 
     Indent        indent      = indentService.findOne(id);
@@ -165,12 +167,52 @@ public class IndentController {
     IndentCommand indentCommand = new IndentCommand();
     indentCommand.toBuy(indent, addressList);
 
-    if (createAddress != null){
+    if (createAddress != null) {
       indentCommand.setCreateAddress(createAddress);
     }
+
     model.addAttribute("command", indentCommand);
 
     return "indent/buy";
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * toIndentListView.
+   *
+   * @param   request  HttpServletRequest
+   * @param   model    Model
+   * @param   id       Long
+   *
+   * @return  String
+   */
+  @RequestMapping(
+    value  = "/allIndent",
+    method = RequestMethod.GET
+  )
+  public String toIndentListView(HttpServletRequest request, Model model, Long id) {
+    AllIndentCommand    allIndentCommand  = new AllIndentCommand();
+    Consumer            consumer          = consumerService.findOne(id);
+    List<Indent>        indentList        = indentService.findByIsConfirmAndConsumer(true, consumer);
+    List<IndentCommand> indentCommandList = new ArrayList<IndentCommand>();
+
+    if (indentList != null) {
+      for (Indent indent : indentList) {
+        IndentCommand indentCommand = new IndentCommand();
+        indentCommand.toAllIndent(indent);
+        indentCommandList.add(indentCommand);
+      }
+
+      allIndentCommand.setIndentCommandList(indentCommandList);
+      allIndentCommand.setNotIndent("false");
+    } else {
+      allIndentCommand.setNotIndent("true");
+    }
+
+    model.addAttribute("command", allIndentCommand);
+
+    return "indent/allIndent";
   }
 
   //~ ------------------------------------------------------------------------------------------------------------------
@@ -180,6 +222,7 @@ public class IndentController {
    *
    * @param   request  HttpServletRequest
    * @param   model    Model
+   * @param   id       Long
    *
    * @return  String
    */
@@ -187,10 +230,11 @@ public class IndentController {
     value  = "/shoppingCart",
     method = RequestMethod.GET
   )
-  public String toShoppingCartView(HttpServletRequest request, Model model) {
+  public String toShoppingCartView(HttpServletRequest request, Model model, Long id) {
+    Consumer            consumer           = consumerService.findOne(id);
     ShoppingCarCommand  shoppingCarCommand = new ShoppingCarCommand();
     List<IndentCommand> indentCommandList  = new ArrayList<IndentCommand>();
-    List<Indent>        indentList         = indentService.findByIsConfirm(false);
+    List<Indent>        indentList         = indentService.findByIsConfirmAndConsumer(false, consumer);
 
     if (indentList != null) {
       for (Indent indent : indentList) {
@@ -201,12 +245,11 @@ public class IndentController {
 
       shoppingCarCommand.setIndentCommandList(indentCommandList);
       shoppingCarCommand.setNotIndent("false");
-      model.addAttribute("command", shoppingCarCommand);
-
-      return "indent/shoppingCart";
+    } else {
+      shoppingCarCommand.setNotIndent("true");
     }
 
-    shoppingCarCommand.setNotIndent("true");
+    model.addAttribute("command", shoppingCarCommand);
 
     return "indent/shoppingCart";
   }

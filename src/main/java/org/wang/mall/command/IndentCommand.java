@@ -28,13 +28,14 @@ public class IndentCommand {
 
   private Long    commodityId;
   private String  commodityName;
-  private String  createAddress;
   private Long    consumerId;
+  private String  createAddress;
   private String  createDate;
   private Long    id;
   private Long    merchantId;
   private String  phoneNumber;
   private Integer price;
+  private String  state;
   private Integer totalNumber;
   private Integer totalPrice;
 
@@ -93,7 +94,6 @@ public class IndentCommand {
 
   //~ ------------------------------------------------------------------------------------------------------------------
 
-
   /**
    * getter method for consumer id.
    *
@@ -101,6 +101,17 @@ public class IndentCommand {
    */
   public Long getConsumerId() {
     return consumerId;
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * getter method for create address.
+   *
+   * @return  String
+   */
+  public String getCreateAddress() {
+    return createAddress;
   }
 
   //~ ------------------------------------------------------------------------------------------------------------------
@@ -156,6 +167,17 @@ public class IndentCommand {
    */
   public Integer getPrice() {
     return price;
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * getter method for state.
+   *
+   * @return  String
+   */
+  public String getState() {
+    return state;
   }
 
   //~ ------------------------------------------------------------------------------------------------------------------
@@ -249,6 +271,17 @@ public class IndentCommand {
   //~ ------------------------------------------------------------------------------------------------------------------
 
   /**
+   * setter method for create address.
+   *
+   * @param  createAddress  String
+   */
+  public void setCreateAddress(String createAddress) {
+    this.createAddress = createAddress;
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
    * setter method for create date.
    *
    * @param  createDate  String
@@ -304,6 +337,17 @@ public class IndentCommand {
   //~ ------------------------------------------------------------------------------------------------------------------
 
   /**
+   * setter method for state.
+   *
+   * @param  state  String
+   */
+  public void setState(String state) {
+    this.state = state;
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
    * setter method for total number.
    *
    * @param  totalNumber  Integer
@@ -332,6 +376,34 @@ public class IndentCommand {
    */
   public void setUserName(String userName) {
     this.userName = userName;
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * toAllIndent.
+   *
+   * @param  indent  Indent
+   */
+  public void toAllIndent(Indent indent) {
+    this.setId(indent.getId());
+
+    if (indent.getCommodity() != null) {
+      this.setCommodityName(indent.getCommodity().getName());
+      this.setPrice(indent.getCommodity().getPrice());
+    }
+
+    this.setCreateDate(Util.sdf.format(indent.getCreateDate()));
+    this.setTotalPrice(indent.getTotalPrice());
+    this.setTotalNumber(indent.getTotalNumber());
+
+    if (!indent.isShipping() && !indent.isPickup()) {
+      this.setState("waitShipping");
+    } else if (indent.isShipping() && !indent.isPickup()) {
+      this.setState("waitPickup");
+    } else if (indent.isShipping() && indent.isPickup()) {
+      this.setState("isPickup");
+    }
   }
 
   //~ ------------------------------------------------------------------------------------------------------------------
@@ -448,13 +520,5 @@ public class IndentCommand {
     if (indent.getConsumer() != null) {
       this.setUserName(indent.getConsumer().getName());
     }
-  }
-
-  public String getCreateAddress() {
-    return createAddress;
-  }
-
-  public void setCreateAddress(String createAddress) {
-    this.createAddress = createAddress;
   }
 } // end class IndentCommand

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import org.springframework.transaction.annotation.Transactional;
 
+import org.wang.mall.model.Consumer;
 import org.wang.mall.model.Indent;
 import org.wang.mall.repository.IndentRepository;
 import org.wang.mall.service.IndentService;
@@ -33,6 +34,15 @@ import org.wang.mall.service.IndentService;
    */
   @Override public List<Indent> findByIsConfirm(boolean isConfirm) {
     return indentRepository.findByIsConfirm(isConfirm);
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * @see  org.wang.mall.service.IndentService#findByIsConfirmAndConsumer(boolean, org.wang.mall.model.Consumer)
+   */
+  @Override public List<Indent> findByIsConfirmAndConsumer(boolean b, Consumer consumer) {
+    return indentRepository.findByIsConfirmAndConsumer(b, consumer);
   }
 
   //~ ------------------------------------------------------------------------------------------------------------------
