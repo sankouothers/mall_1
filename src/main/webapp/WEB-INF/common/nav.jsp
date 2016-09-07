@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%--
   Created by IntelliJ IDEA.
@@ -15,27 +16,21 @@
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <form class="navbar-form navbar-left" role="search">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search">
-        </div>
-        <button type="submit" class="btn btn-default">Submit</button>
-      </form>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="/indent/allIndent?id=${sessionScope.LoggedInUserID}">订单</a></li>
         <li><a href="/indent/shoppingCart?id=${sessionScope.LoggedInUserID}">购物车</a></li>
-        <li><a href="/login">登录</a></li>
-        <%--<li class="dropdown">--%>
-          <%--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"--%>
-             <%--aria-expanded="false">Dropdown <span class="caret"></span></a>--%>
-          <%--<ul class="dropdown-menu">--%>
-            <%--<li><a href="#">Action</a></li>--%>
-            <%--<li><a href="#">Another action</a></li>--%>
-            <%--<li><a href="#">Something else here</a></li>--%>
-            <%--<li role="separator" class="divider"></li>--%>
-            <%--<li><a href="#">Separated link</a></li>--%>
-          <%--</ul>--%>
-        <%--</li>--%>
+
+        <c:if test="${sessionScope.LoggedInUserID eq null && sessionScope.LoggedInUserName eq null}">
+          <li><a href="/login">登录</a></li>
+        </c:if>
+        <c:if test="${sessionScope.LoggedInUserID ne null && sessionScope.LoggedInUserName ne null}">
+          <c:if test="${sessionScope.LoggedInUserRole ne null}">
+            <c:set var="url" scope="page"
+                   value="/${sessionScope.LoggedInUserRole}/info?id=${sessionScope.LoggedInUserID}"/>
+          </c:if>
+          <li><a href="${url}">${sessionScope.LoggedInUserName}</a></li>
+        </c:if>
+
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->

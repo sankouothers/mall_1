@@ -77,4 +77,27 @@ public class ConsumerController {
 
     return "/consumer/create";
   }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * toInfoView.
+   *
+   * @param   request  HttpServletRequest
+   * @param   model    Model
+   * @param   id       Long
+   *
+   * @return  String
+   */
+  @RequestMapping(
+    value  = "/info",
+    method = RequestMethod.GET
+  )
+  public String toInfoView(HttpServletRequest request, Model model, Long id) {
+    Consumer        consumer = consumerService.findOne(id);
+    ConsumerCommand command  = new ConsumerCommand(consumer);
+    model.addAttribute("command", command);
+
+    return "/consumer/info";
+  }
 } // end class ConsumerController

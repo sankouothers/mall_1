@@ -48,6 +48,7 @@ import org.wang.mall.util.Parameter;
     if (consumer != null) {
       request.getSession().setAttribute(Parameter.USER_NAME_KEY, consumer.getName());
       request.getSession().setAttribute(Parameter.USER_ID_KEY, consumer.getId());
+      request.getSession().setAttribute(Parameter.USER_ROLE_KEY, "consumer");
 
       return "redirect:/mall";
     }

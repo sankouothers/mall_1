@@ -32,5 +32,8 @@ public class Parameter {
   public static final String USER_NAME_KEY = "LoggedInUserName";
 
   /** TODO: DOCUMENT ME! */
+  public static final String USER_ROLE_KEY = "LoggedInUserRole";
+
+  /** TODO: DOCUMENT ME! */
   public static final String USER_ID_KEY = "LoggedInUserID";
 } // end class Parameter

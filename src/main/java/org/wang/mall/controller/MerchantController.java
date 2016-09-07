@@ -72,6 +72,7 @@ public class MerchantController {
     if (merchant != null) {
       request.getSession().setAttribute(Parameter.USER_NAME_KEY, merchant.getName());
       request.getSession().setAttribute(Parameter.USER_ID_KEY, merchant.getId());
+      request.getSession().setAttribute(Parameter.USER_ROLE_KEY, "merchant");
 
       return "redirect:/merchant/index";
     }
@@ -106,6 +107,31 @@ public class MerchantController {
     model.addAttribute("command", command);
 
     return "/merchant/create";
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * toInfoView.
+   *
+   * @param   request  HttpServletRequest
+   * @param   model    Model
+   * @param   id       Long
+   *
+   * @return  String
+   */
+  @RequestMapping(
+    value  = "/info",
+    method = RequestMethod.GET
+  )
+  public String toInfoView(HttpServletRequest request, Model model, Long id) {
+    Merchant        merchant = merchantService.findOne(id);
+    MerchantCommand command  = new MerchantCommand(merchant);
+
+
+    model.addAttribute("command", command);
+
+    return "/merchant/info";
   }
 
   //~ ------------------------------------------------------------------------------------------------------------------

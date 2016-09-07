@@ -15,6 +15,7 @@ import javax.persistence.OneToMany;
 import org.wang.mall.model.Commodity;
 import org.wang.mall.model.Indent;
 import org.wang.mall.model.Merchant;
+import org.wang.mall.util.Util;
 
 
 /**
@@ -28,7 +29,8 @@ public class MerchantCommand {
 
   private String answer;
 
-  private String create = "F";
+  private String create     = "F";
+  private String createDate;
 
   private Long id;
 
@@ -45,6 +47,27 @@ public class MerchantCommand {
   private String question;
 
   private String userName;
+
+  //~ Constructors -----------------------------------------------------------------------------------------------------
+
+  /**
+   * Creates a new MerchantCommand object.
+   */
+  public MerchantCommand() { }
+
+  /**
+   * Creates a new MerchantCommand object.
+   *
+   * @param  merchant  Merchant
+   */
+  public MerchantCommand(Merchant merchant) {
+    this.id          = merchant.getId();
+    this.IDcard      = merchant.getIDcard();
+    this.name        = merchant.getName();
+    this.phoneNumber = merchant.getPhoneNumber();
+    this.userName    = merchant.getUserName();
+    this.createDate  = Util.sdf.format(merchant.getCreateDate());
+  }
 
   //~ Methods ----------------------------------------------------------------------------------------------------------
 
@@ -66,6 +89,17 @@ public class MerchantCommand {
    */
   public String getCreate() {
     return create;
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * getter method for create date.
+   *
+   * @return  String
+   */
+  public String getCreateDate() {
+    return createDate;
   }
 
   //~ ------------------------------------------------------------------------------------------------------------------
@@ -176,6 +210,17 @@ public class MerchantCommand {
    */
   public void setCreate(String create) {
     this.create = create;
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * setter method for create date.
+   *
+   * @param  createDate  String
+   */
+  public void setCreateDate(String createDate) {
+    this.createDate = createDate;
   }
 
   //~ ------------------------------------------------------------------------------------------------------------------

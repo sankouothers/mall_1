@@ -12,6 +12,7 @@ import javax.persistence.OneToMany;
 import org.wang.mall.model.Address;
 import org.wang.mall.model.Consumer;
 import org.wang.mall.model.Indent;
+import org.wang.mall.util.Util;
 
 
 /**
@@ -25,7 +26,8 @@ public class ConsumerCommand {
 
   private String answer;
 
-  private String create = "F";
+  private String create     = "F";
+  private String createDate;
 
   private Long id;
 
@@ -40,6 +42,26 @@ public class ConsumerCommand {
   private String phoneNumber;
 
   private String question;
+
+  //~ Constructors -----------------------------------------------------------------------------------------------------
+
+  /**
+   * Creates a new ConsumerCommand object.
+   */
+  public ConsumerCommand() { }
+
+  /**
+   * Creates a new ConsumerCommand object.
+   *
+   * @param  consumer  Consumer
+   */
+  public ConsumerCommand(Consumer consumer) {
+    this.id          = consumer.getId();
+    this.IDcard      = consumer.getIDcard();
+    this.name        = consumer.getName();
+    this.phoneNumber = consumer.getPhoneNumber();
+    this.createDate  = Util.sdf.format(consumer.getCreateDate());
+  }
 
   //~ Methods ----------------------------------------------------------------------------------------------------------
 
@@ -61,6 +83,17 @@ public class ConsumerCommand {
    */
   public String getCreate() {
     return create;
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * getter method for create date.
+   *
+   * @return  String
+   */
+  public String getCreateDate() {
+    return createDate;
   }
 
   //~ ------------------------------------------------------------------------------------------------------------------
@@ -160,6 +193,17 @@ public class ConsumerCommand {
    */
   public void setCreate(String create) {
     this.create = create;
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * setter method for create date.
+   *
+   * @param  createDate  String
+   */
+  public void setCreateDate(String createDate) {
+    this.createDate = createDate;
   }
 
   //~ ------------------------------------------------------------------------------------------------------------------
