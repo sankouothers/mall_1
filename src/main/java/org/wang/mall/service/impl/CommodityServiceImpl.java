@@ -48,6 +48,15 @@ import org.wang.mall.service.CommodityService;
   //~ ------------------------------------------------------------------------------------------------------------------
 
   /**
+   * @see  org.wang.mall.service.CommodityService#findOne(java.lang.Long)
+   */
+  @Override public Commodity findOne(Long id) {
+    return commodityRepository.findOne(id);
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
    * @see  org.wang.mall.service.CommodityService#findTop12ByOrderBySalesDesc()
    */
   @Override public List<Commodity> findTop12ByOrderBySalesDesc() {
@@ -62,10 +71,5 @@ import org.wang.mall.service.CommodityService;
    */
   @Override public List<Commodity> findTop5ByOrderByCreateDateDesc() {
     return commodityRepository.findTop5ByOrderByCreateDateDesc();
-  }
-
-  @Override
-  public Commodity findOne(Long id) {
-    return commodityRepository.findOne(id);
   }
 } // end class CommodityServiceImpl

@@ -24,7 +24,22 @@ public interface AddressService {
    */
   List<Address> finByConsumer(Consumer consumer);
 
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * save.
+   *
+   * @param  address  Address
+   */
   void save(Address address);
 
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * setter method for is default address.
+   *
+   * @param  b         boolean
+   * @param  consumer  Consumer
+   */
   void setIsDefaultAddress(boolean b, Consumer consumer);
-}
+} // end interface AddressService

@@ -35,6 +35,17 @@ public interface CommodityService {
   //~ ------------------------------------------------------------------------------------------------------------------
 
   /**
+   * findOne.
+   *
+   * @param   id  Long
+   *
+   * @return  Commodity
+   */
+  Commodity findOne(Long id);
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
    * findBySales.
    *
    * @return  List
@@ -49,6 +60,4 @@ public interface CommodityService {
    * @return  List
    */
   List<Commodity> findTop5ByOrderByCreateDateDesc();
-
-  Commodity findOne(Long id);
 } // end interface CommodityService

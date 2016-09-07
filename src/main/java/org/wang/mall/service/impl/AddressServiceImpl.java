@@ -35,13 +35,21 @@ import org.wang.mall.service.AddressService;
     return addressRepository.findByConsumer(consumer);
   }
 
-  @Override
-  public void save(Address address) {
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * @see  org.wang.mall.service.AddressService#save(org.wang.mall.model.Address)
+   */
+  @Override public void save(Address address) {
     addressRepository.save(address);
   }
 
-  @Override
-  public void setIsDefaultAddress(boolean b, Consumer consumer) {
-    addressRepository.setIsDefaultAddress(b,consumer);
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * @see  org.wang.mall.service.AddressService#setIsDefaultAddress(boolean, org.wang.mall.model.Consumer)
+   */
+  @Override public void setIsDefaultAddress(boolean b, Consumer consumer) {
+    addressRepository.setIsDefaultAddress(b, consumer);
   }
-}
+} // end class AddressServiceImpl

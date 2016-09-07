@@ -285,7 +285,6 @@ import org.wang.mall.service.MerchantService;
     method = RequestMethod.GET
   )
   public String toSearchWinView(HttpServletRequest request) {
-
     return "commodity/search";
   }
 
