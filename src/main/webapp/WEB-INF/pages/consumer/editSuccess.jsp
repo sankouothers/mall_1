@@ -11,30 +11,21 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
   <jsp:include page="/WEB-INF/common/meta.jsp"/>
-  <title>用户信息</title>
+  <title>修改成功</title>
+
 </head>
 <body class="body">
 <jsp:include page="/WEB-INF/common/nav.jsp"/>
-<section class="content">
-  <div class="container">
 
-    <div class="well">
-
-      <ul class="list-group">
-        <li class="list-group-item">用户名: ${command.name}</li>
-        <li class="list-group-item">身份证号: ${command.IDcard}</li>
-        <li class="list-group-item">电话号码: ${command.phoneNumber}</li>
-        <li class="list-group-item">创建时间: ${command.createDate}</li>
-      </ul>
-      <a class="btn btn-primary" methods="get" href="/consumer/edit?id=${command.id}">修改信息</a>
-    </div>
+<div align="center">
+  <div class="jumbotron">
+    <h3>用户信息修改成功</h3>
   </div>
-</section>
+</div>
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="<c:url value="/bootstrap/js/bootstrap.min.js" />"></script>
-
 </body>
 </html>

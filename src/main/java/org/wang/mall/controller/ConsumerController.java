@@ -52,6 +52,31 @@ public class ConsumerController {
   //~ ------------------------------------------------------------------------------------------------------------------
 
   /**
+   * edit.
+   *
+   * @param   request  HttpServletRequest
+   * @param   model    Model
+   * @param   id       Long
+   * @param   command  ConsumerCommand
+   *
+   * @return  String
+   */
+  @RequestMapping(
+    value  = "/edit",
+    method = RequestMethod.POST
+  )
+  public String edit(HttpServletRequest request, Model model, Long id, ConsumerCommand command) {
+    Consumer consumer     = consumerService.findOne(command.getId());
+    Consumer editConsumer = command.edit(consumer, command);
+
+    consumerService.save(editConsumer);
+
+    return "redirect:/consumer/editSuccess";
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
    * toCreateConsumerView.
    *
    * @param   request  HttpServletRequest
@@ -99,5 +124,28 @@ public class ConsumerController {
     model.addAttribute("command", command);
 
     return "/consumer/info";
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * toUpdateView.
+   *
+   * @param   request  HttpServletRequest
+   * @param   model    Model
+   * @param   id       Long
+   *
+   * @return  String
+   */
+  @RequestMapping(
+    value  = "/edit",
+    method = RequestMethod.GET
+  )
+  public String toUpdateView(HttpServletRequest request, Model model, Long id) {
+    Consumer        consumer = consumerService.findOne(id);
+    ConsumerCommand command  = new ConsumerCommand(consumer);
+    model.addAttribute("command", command);
+
+    return "/consumer/edit";
   }
 } // end class ConsumerController

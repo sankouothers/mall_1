@@ -66,6 +66,28 @@ public class ConsumerCommand {
   //~ Methods ----------------------------------------------------------------------------------------------------------
 
   /**
+   * edit.
+   *
+   * @param   consumer  Consumer
+   * @param   command   ConsumerCommand
+   *
+   * @return  Consumer
+   */
+  public Consumer edit(Consumer consumer, ConsumerCommand command) {
+    if (!consumer.getPhoneNumber().equals(command.getPhoneNumber())) {
+      consumer.setPhoneNumber(command.getPhoneNumber());
+    }
+
+    if (!consumer.getName().equals(command.getName())) {
+      consumer.setName(command.getName());
+    }
+
+    return consumer;
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
    * getter method for answer.
    *
    * @return  String

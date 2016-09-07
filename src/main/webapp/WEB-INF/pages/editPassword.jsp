@@ -15,7 +15,7 @@
   <title>修改密码</title>
 </head>
 <body>
-
+<jsp:include page="/WEB-INF/common/nav.jsp"/>
 <div class="container">
   <div class="clearfix">&nbsp;</div>
 

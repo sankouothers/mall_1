@@ -27,7 +27,7 @@
         <li class="list-group-item">电话号码: ${command.phoneNumber}</li>
         <li class="list-group-item">创建时间: ${command.createDate}</li>
       </ul>
-      <a class="btn btn-primary" methods="get" href="/consumer/update?id=${command.id}">修改信息</a>
+      <a class="btn btn-primary" methods="get" href="/merchant/edit?id=${command.id}">修改信息</a>
     </div>
   </div>
 </section>

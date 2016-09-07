@@ -1,19 +1,7 @@
 package org.wang.mall.command;
 
 import java.util.Date;
-import java.util.Set;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
-
-import org.wang.mall.model.Commodity;
-import org.wang.mall.model.Indent;
 import org.wang.mall.model.Merchant;
 import org.wang.mall.util.Util;
 
@@ -70,6 +58,28 @@ public class MerchantCommand {
   }
 
   //~ Methods ----------------------------------------------------------------------------------------------------------
+
+  /**
+   * edit.
+   *
+   * @param   merchant  Merchant
+   * @param   command   MerchantCommand
+   *
+   * @return  Merchant
+   */
+  public Merchant edit(Merchant merchant, MerchantCommand command) {
+    if (!merchant.getName().equals(command.getName())) {
+      merchant.setName(command.getName());
+    }
+
+    if (!merchant.getPhoneNumber().equals(command.getPhoneNumber())) {
+      merchant.setPhoneNumber(command.getPhoneNumber());
+    }
+
+    return merchant;
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
 
   /**
    * getter method for answer.

@@ -55,6 +55,30 @@ public class MerchantController {
   //~ ------------------------------------------------------------------------------------------------------------------
 
   /**
+   * edit.
+   *
+   * @param   request  HttpServletRequest
+   * @param   model    Model
+   * @param   command  MerchantCommand
+   *
+   * @return  String
+   */
+  @RequestMapping(
+    value  = "/edit",
+    method = RequestMethod.POST
+  )
+  public String edit(HttpServletRequest request, Model model, MerchantCommand command) {
+    Merchant merchant = merchantService.findOne(command.getId());
+
+    Merchant editMerchant = command.edit(merchant, command);
+    merchantService.save(editMerchant);
+
+    return "redirect:/merchant/editSuccess";
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
    * login.
    *
    * @param   request    HttpServletRequest
@@ -147,5 +171,28 @@ public class MerchantController {
   )
   public String toMerchantIndexView() {
     return "/merchant/index";
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * toUpdateView.
+   *
+   * @param   request  HttpServletRequest
+   * @param   model    Model
+   * @param   id       Long
+   *
+   * @return  String
+   */
+  @RequestMapping(
+    value  = "/edit",
+    method = RequestMethod.GET
+  )
+  public String toUpdateView(HttpServletRequest request, Model model, Long id) {
+    Merchant        merchant = merchantService.findOne(id);
+    MerchantCommand command  = new MerchantCommand(merchant);
+    model.addAttribute("command", command);
+
+    return "/merchant/edit";
   }
 } // end class MerchantController

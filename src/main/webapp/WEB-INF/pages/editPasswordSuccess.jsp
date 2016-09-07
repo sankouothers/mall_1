@@ -15,7 +15,7 @@
 
 </head>
 <body class="body">
-
+<jsp:include page="/WEB-INF/common/nav.jsp"/>
 
 <div align="center">
   <div class="jumbotron">
