@@ -1,5 +1,7 @@
 package org.wang.mall.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +13,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import org.wang.mall.command.CommodityInfoCommand;
 import org.wang.mall.command.MerchantCommand;
+import org.wang.mall.model.Commodity;
 import org.wang.mall.model.Merchant;
+import org.wang.mall.service.CommodityService;
 import org.wang.mall.service.MerchantService;
 import org.wang.mall.util.LoginForm;
 import org.wang.mall.util.Parameter;
@@ -29,6 +34,8 @@ import org.wang.mall.util.Parameter;
 @RequestMapping(value = "/merchant")
 public class MerchantController {
   //~ Instance fields --------------------------------------------------------------------------------------------------
+
+  @Autowired private CommodityService commodityService;
 
   @Autowired private MerchantService merchantService;
 
@@ -102,6 +109,30 @@ public class MerchantController {
     }
 
     return "redirect:/login?failed=true";
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * toCommodityListBySalesView.
+   *
+   * @param   request  HttpServletRequest
+   * @param   model    Model
+   * @param   id       Long
+   *
+   * @return  String
+   */
+  @RequestMapping(
+    value  = "/commodityListBySales",
+    method = RequestMethod.GET
+  )
+  public String toCommodityListBySalesView(HttpServletRequest request, Model model, Long id) {
+    Merchant        merchant             = merchantService.findOne(id);
+    List<Commodity> commodityListBySales = commodityService.findByMerchantOrderBySalesDesc(merchant);
+
+    model.addAttribute("commodityListBySales", commodityListBySales);
+
+    return "/merchant/commodityListBySales";
   }
 
   //~ ------------------------------------------------------------------------------------------------------------------

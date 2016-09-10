@@ -9,6 +9,7 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
 import org.wang.mall.model.Commodity;
+import org.wang.mall.model.Merchant;
 
 
 /**
@@ -20,6 +21,17 @@ import org.wang.mall.model.Commodity;
 @Repository public interface CommodityRepository extends CrudRepository<Commodity, Long>,
   PagingAndSortingRepository<Commodity, Long> {
   //~ Methods ----------------------------------------------------------------------------------------------------------
+
+  /**
+   * findByMerchantOrderBySalesDesc.
+   *
+   * @param   merchant  Merchant
+   *
+   * @return  List
+   */
+  List<Commodity> findByMerchantOrderBySalesDesc(Merchant merchant);
+
+  //~ ------------------------------------------------------------------------------------------------------------------
 
   /**
    * findByNameStartingWith.

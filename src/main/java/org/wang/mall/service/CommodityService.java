@@ -3,6 +3,7 @@ package org.wang.mall.service;
 import java.util.List;
 
 import org.wang.mall.model.Commodity;
+import org.wang.mall.model.Merchant;
 
 
 /**
@@ -20,6 +21,18 @@ public interface CommodityService {
    * @return  List
    */
   List<Commodity> findAll();
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+
+  /**
+   * findByMerchantOrderBySalesDesc.
+   *
+   * @param   merchant  Merchant
+   *
+   * @return  List
+   */
+  List<Commodity> findByMerchantOrderBySalesDesc(Merchant merchant);
 
   //~ ------------------------------------------------------------------------------------------------------------------
 

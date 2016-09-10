@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import org.wang.mall.model.Commodity;
+import org.wang.mall.model.Merchant;
 import org.wang.mall.repository.CommodityRepository;
 import org.wang.mall.service.CommodityService;
 
@@ -34,6 +35,15 @@ import org.wang.mall.service.CommodityService;
    */
   @Override public List<Commodity> findAll() {
     return (List<Commodity>) commodityRepository.findAll();
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * @see  org.wang.mall.service.CommodityService#findByMerchantOrderBySalesDesc(org.wang.mall.model.Merchant)
+   */
+  @Override public List<Commodity> findByMerchantOrderBySalesDesc(Merchant merchant) {
+    return commodityRepository.findByMerchantOrderBySalesDesc(merchant);
   }
 
   //~ ------------------------------------------------------------------------------------------------------------------

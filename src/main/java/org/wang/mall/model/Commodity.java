@@ -16,6 +16,9 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
 
 /**
  * Created by ozintel06 on 16/7/24.
@@ -49,14 +52,17 @@ import javax.persistence.OneToMany;
   @OneToMany private Set<Indent> indentSet;
 
   @Column private Boolean isPutaway;
+//
+// @Cascade({CascadeType.ALL})
+// @JoinTable(
+// name               = "Merchant_commodity",
+// joinColumns        = { @JoinColumn(name = "commodityId") },
+// inverseJoinColumns = { @JoinColumn(name = "merchantId") }
+// )
+// @ManyToMany(mappedBy = "commoditySet") private Set<Merchant> merchantSet;
 
-  @JoinTable(
-    name               = "Merchant_commodity",
-    joinColumns        = { @JoinColumn(name = "commodityId") },
-    inverseJoinColumns = { @JoinColumn(name = "merchantId") }
-  )
-  @ManyToMany private Set<Merchant> merchantSet;
-
+  @JoinColumn(name = "merchantId")
+  @ManyToOne private Merchant merchant;
 
   @Column(
     length   = 12,
@@ -139,16 +145,26 @@ import javax.persistence.OneToMany;
 
   //~ ------------------------------------------------------------------------------------------------------------------
 
+
+  /**
+   * getter method for merchant.
+   *
+   * @return  Merchant
+   */
+  public Merchant getMerchant() {
+    return merchant;
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
   /**
    * getter method for merchant set.
    *
    * @return  Set
    */
-  public Set<Merchant> getMerchantSet() {
-    return merchantSet;
-  }
-
-  //~ ------------------------------------------------------------------------------------------------------------------
+// public Set<Merchant> getMerchantSet() {
+// return merchantSet;
+// }
 
   /**
    * getter method for name.
@@ -272,15 +288,24 @@ import javax.persistence.OneToMany;
   //~ ------------------------------------------------------------------------------------------------------------------
 
   /**
-   * setter method for merchant set.
+   * setter method for merchant.
    *
-   * @param  merchantSet  Set
+   * @param  merchant  Merchant
    */
-  public void setMerchantSet(Set<Merchant> merchantSet) {
-    this.merchantSet = merchantSet;
+  public void setMerchant(Merchant merchant) {
+    this.merchant = merchant;
   }
 
   //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * setter method for merchant set.
+   *
+   * @param  name  merchantSet Set
+   */
+// public void setMerchantSet(Set<Merchant> merchantSet) {
+// this.merchantSet = merchantSet;
+// }
 
   /**
    * setter method for name.
@@ -334,6 +359,4 @@ import javax.persistence.OneToMany;
   public void setSales(Integer sales) {
     this.sales = sales;
   }
-
-
 } // end class Commodity

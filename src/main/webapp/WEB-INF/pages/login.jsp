@@ -105,7 +105,7 @@
             <div class="form-group">
 
               <div class="col-sm-10 form-group-lg">
-                <input id="merchantPassWord" type="password" name="passWord" class="form-control"
+                <input id="merchantPassWord" type="password" name="password" class="form-control"
                        placeholder="Password">
               </div>
             </div>
