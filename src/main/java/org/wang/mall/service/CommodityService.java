@@ -24,7 +24,6 @@ public interface CommodityService {
 
   //~ ------------------------------------------------------------------------------------------------------------------
 
-
   /**
    * findByMerchantOrderBySalesDesc.
    *
@@ -73,4 +72,13 @@ public interface CommodityService {
    * @return  List
    */
   List<Commodity> findTop5ByOrderByCreateDateDesc();
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * save.
+   *
+   * @param  commodity  Commodity
+   */
+  void save(Commodity commodity);
 } // end interface CommodityService

@@ -130,6 +130,7 @@ public class MerchantController {
     Merchant        merchant             = merchantService.findOne(id);
     List<Commodity> commodityListBySales = commodityService.findByMerchantOrderBySalesDesc(merchant);
 
+    model.addAttribute("merchantId", id);
     model.addAttribute("commodityListBySales", commodityListBySales);
 
     return "/merchant/commodityListBySales";

@@ -13,9 +13,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import org.wang.mall.command.CommodityCommand;
 import org.wang.mall.command.CommodityInfoCommand;
+import org.wang.mall.model.Brand;
+import org.wang.mall.model.Category;
 import org.wang.mall.model.Commodity;
+import org.wang.mall.model.Effect;
+import org.wang.mall.service.BrandService;
+import org.wang.mall.service.CategoryService;
 import org.wang.mall.service.CommodityService;
+import org.wang.mall.service.EffectService;
 
 
 /**
@@ -29,8 +36,12 @@ import org.wang.mall.service.CommodityService;
 public class CommodityController {
   //~ Instance fields --------------------------------------------------------------------------------------------------
 
+  @Autowired private BrandService    brandService;
+  @Autowired private CategoryService categoryService;
+
   /** TODO: DOCUMENT ME! */
   @Autowired private CommodityService commodityService;
+  @Autowired private EffectService    effectService;
 
   //~ Methods ----------------------------------------------------------------------------------------------------------
 
@@ -101,6 +112,61 @@ public class CommodityController {
     request.setAttribute("commodityListBySales", commodityListBySales);
 
     return "commodity/commodityListBySales";
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * create.
+   *
+   * @param   request  HttpServletRequest
+   * @param   command  CommodityCommand
+   * @param   model    Model
+   *
+   * @return  String
+   */
+  @RequestMapping(
+    value  = "/create",
+    method = RequestMethod.POST
+  )
+  public String create(HttpServletRequest request, CommodityCommand command, Model model) {
+    Commodity commodity = command.toCommodity(command);
+    commodityService.save(commodity);
+
+    return "commodity/createSuccess";
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * toCreateView.
+   *
+   * @param   request  HttpServletRequest
+   * @param   id       Long
+   * @param   model    Model
+   *
+   * @return  String
+   */
+  @RequestMapping(
+    value  = "/create",
+    method = RequestMethod.GET
+  )
+  public String toCreateView(HttpServletRequest request, Long id, Model model) {
+    CommodityCommand command = new CommodityCommand();
+
+    command.setMerchantId(id);
+
+    List<Brand>    brandList    = brandService.findAll();
+    List<Category> categoryList = categoryService.findAll();
+    List<Effect>   effectList   = effectService.findAll();
+
+    command.setBrandList(brandList);
+    command.setEffectList(effectList);
+    command.setCategoryList(categoryList);
+
+    model.addAttribute("command", command);
+
+    return "commodity/create";
   }
 
   //~ ------------------------------------------------------------------------------------------------------------------
