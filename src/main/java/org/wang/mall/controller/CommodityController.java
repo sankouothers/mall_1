@@ -1,6 +1,7 @@
 package org.wang.mall.controller;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -143,6 +144,30 @@ public class CommodityController {
   //~ ------------------------------------------------------------------------------------------------------------------
 
   /**
+   * putaway.
+   *
+   * @param   request  HttpServletRequest
+   * @param   id       Long
+   * @param   model    Model
+   *
+   * @return  String
+   */
+  @RequestMapping(
+    value  = "/putaway",
+    method = RequestMethod.GET
+  )
+  public String putaway(HttpServletRequest request, Long id, Model model) {
+    Commodity commodity = commodityService.findOne(id);
+    commodity.setPutaway(true);
+    commodity.setPutawayTime(new Date());
+    commodityService.save(commodity);
+
+    return "redirect:/commodity/showInPutaway?id=" + commodity.getMerchant().getId();
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
    * toCreateView.
    *
    * @param   request  HttpServletRequest
@@ -210,7 +235,7 @@ public class CommodityController {
    * @return  String
    */
   @RequestMapping(
-    value  = "/inPutaway",
+    value  = "/showInPutaway",
     method = RequestMethod.GET
   )
   public String toInPutawayView(HttpServletRequest request, Long id, Model model) {
@@ -241,7 +266,7 @@ public class CommodityController {
    * @return  String
    */
   @RequestMapping(
-    value  = "/notInPutaway",
+    value  = "/showNotInPutaway",
     method = RequestMethod.GET
   )
   public String toNotInPutawayView(HttpServletRequest request, Long id, Model model) {
@@ -258,5 +283,28 @@ public class CommodityController {
     model.addAttribute("commodityList", commodityCommandList);
 
     return "commodity/putaway";
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * unshelve.
+   *
+   * @param   request  HttpServletRequest
+   * @param   id       Long
+   * @param   model    Model
+   *
+   * @return  String
+   */
+  @RequestMapping(
+    value  = "/unshelve",
+    method = RequestMethod.GET
+  )
+  public String unshelve(HttpServletRequest request, Long id, Model model) {
+    Commodity commodity = commodityService.findOne(id);
+    commodity.setPutaway(false);
+    commodityService.save(commodity);
+
+    return "redirect:/commodity/showNotInPutaway?id=" + commodity.getMerchant().getId();
   }
 } // end class CommodityController

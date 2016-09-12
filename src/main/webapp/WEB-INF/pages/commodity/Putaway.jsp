@@ -69,10 +69,10 @@
 
             <p style="margin-bottom: 0px;">
               <c:if test="${item.putaway eq false}">
-                <a href="commodity/putaway?id=${item.id}" class="btn btn-primary" role="button">商品上架</a>
+                <a href="/commodity/putaway?id=${item.id}" class="btn btn-primary" role="button">商品上架</a>
               </c:if>
               <c:if test="${item.putaway eq true}">
-                <a href="commodity/unshelve?id=${item.id}" class="btn btn-primary" role="button">商品下架</a>
+                <a href="/commodity/unshelve?id=${item.id}" class="btn btn-primary" role="button">商品下架</a>
               </c:if>
             </p>
           </div>

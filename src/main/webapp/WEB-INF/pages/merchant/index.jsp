@@ -25,8 +25,8 @@
         <ul class="nav nav-pills nav-stacked" role="tablist">
           <li role="presentation"><a href="/commodity/create?id=${merchantId}">添加新的商品</a></li>
           <li role="presentation"><a href="/indent/process?id=${merchantId}">查看需要处理的订单</a></li>
-          <li role="presentation"><a href="/commodity/inPutaway?id=${merchantId}">查看正在销售的商品</a></li>
-          <li role="presentation"><a href="/commodity/notInPutaway?id=${merchantId}">查看未上架商品</a></li>
+          <li role="presentation"><a href="/commodity/showInPutaway?id=${merchantId}">查看正在销售的商品</a></li>
+          <li role="presentation"><a href="/commodity/showNotInPutaway?id=${merchantId}">查看未上架商品</a></li>
         </ul>
       </div>
       <div class="col-md-8">
