@@ -2,6 +2,7 @@ package org.wang.mall.service;
 
 import java.util.List;
 
+import org.wang.mall.command.CommodityCommand;
 import org.wang.mall.model.Commodity;
 import org.wang.mall.model.Merchant;
 
@@ -21,6 +22,18 @@ public interface CommodityService {
    * @return  List
    */
   List<Commodity> findAll();
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * findByMerchantAndIsPutaway.
+   *
+   * @param   merchant  Merchant
+   * @param   b         boolean
+   *
+   * @return  List
+   */
+  List<Commodity> findByMerchantAndIsPutaway(Merchant merchant, boolean b);
 
   //~ ------------------------------------------------------------------------------------------------------------------
 

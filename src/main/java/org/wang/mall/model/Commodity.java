@@ -51,7 +51,7 @@ import org.hibernate.annotations.CascadeType;
 
   @OneToMany private Set<Indent> indentSet;
 
-  @Column private Boolean isPutaway;
+  @Column private Boolean isPutaway = false;
 //
 // @Cascade({CascadeType.ALL})
 // @JoinTable(
@@ -144,7 +144,6 @@ import org.hibernate.annotations.CascadeType;
   }
 
   //~ ------------------------------------------------------------------------------------------------------------------
-
 
   /**
    * getter method for merchant.

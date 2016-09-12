@@ -8,6 +8,7 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 
 import org.springframework.stereotype.Repository;
 
+import org.wang.mall.command.CommodityCommand;
 import org.wang.mall.model.Commodity;
 import org.wang.mall.model.Merchant;
 
@@ -21,6 +22,18 @@ import org.wang.mall.model.Merchant;
 @Repository public interface CommodityRepository extends CrudRepository<Commodity, Long>,
   PagingAndSortingRepository<Commodity, Long> {
   //~ Methods ----------------------------------------------------------------------------------------------------------
+
+  /**
+   * findByIsPutawayAndMerchant.
+   *
+   * @param   b         boolean
+   * @param   merchant  Merchant
+   *
+   * @return  List
+   */
+  List<Commodity> findByIsPutawayAndMerchant(boolean b, Merchant merchant);
+
+  //~ ------------------------------------------------------------------------------------------------------------------
 
   /**
    * findByMerchantOrderBySalesDesc.

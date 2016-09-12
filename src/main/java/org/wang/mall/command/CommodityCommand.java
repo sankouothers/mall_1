@@ -10,6 +10,7 @@ import org.wang.mall.model.Commodity;
 import org.wang.mall.model.Effect;
 import org.wang.mall.model.Indent;
 import org.wang.mall.model.Merchant;
+import org.wang.mall.util.Util;
 
 
 /**
@@ -28,6 +29,7 @@ public class CommodityCommand {
   private Long           categoryId;
   private List<Category> categoryList;
   private Date           createDate;
+  private String         createDateString;
   private Effect         effect;
   private Long           effectId;
   private List<Effect>   effectList;
@@ -41,7 +43,6 @@ public class CommodityCommand {
   private Integer        sales;
 
   //~ Methods ----------------------------------------------------------------------------------------------------------
-
 
   /**
    * getter method for brand.
@@ -116,6 +117,17 @@ public class CommodityCommand {
    */
   public Date getCreateDate() {
     return createDate;
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * getter method for create date string.
+   *
+   * @return  String
+   */
+  public String getCreateDateString() {
+    return createDateString;
   }
 
   //~ ------------------------------------------------------------------------------------------------------------------
@@ -207,7 +219,6 @@ public class CommodityCommand {
   }
 
   //~ ------------------------------------------------------------------------------------------------------------------
-
 
   /**
    * getter method for putaway.
@@ -315,6 +326,17 @@ public class CommodityCommand {
    */
   public void setCreateDate(Date createDate) {
     this.createDate = createDate;
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * setter method for create date string.
+   *
+   * @param  createDateString  String
+   */
+  public void setCreateDateString(String createDateString) {
+    this.createDateString = createDateString;
   }
 
   //~ ------------------------------------------------------------------------------------------------------------------
@@ -485,4 +507,22 @@ public class CommodityCommand {
 
     return commodity;
   } // end method toCommodity
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * toNotInPutaway.
+   *
+   * @param  commodity  Commodity
+   */
+  public void toNotInPutaway(Commodity commodity) {
+    this.id               = commodity.getId();
+    this.brand            = commodity.getBrand();
+    this.category         = commodity.getCategory();
+    this.createDateString = Util.sdf.format(commodity.getCreateDate());
+    this.effect           = commodity.getEffect();
+    this.isPutaway        = commodity.getPutaway();
+    this.name             = commodity.getName();
+    this.price            = commodity.getPrice();
+  }
 } // end class CommodityCommand

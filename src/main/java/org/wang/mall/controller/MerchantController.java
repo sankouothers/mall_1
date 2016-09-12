@@ -105,7 +105,7 @@ public class MerchantController {
       request.getSession().setAttribute(Parameter.USER_ID_KEY, merchant.getId());
       request.getSession().setAttribute(Parameter.USER_ROLE_KEY, "merchant");
 
-      return "redirect:/merchant/index";
+      return "redirect:/merchant/index?id=" + merchant.getId();
     }
 
     return "redirect:/login?failed=true";
@@ -195,13 +195,18 @@ public class MerchantController {
   /**
    * toMerchantIndexView.
    *
+   * @param   id     Long
+   * @param   model  Model
+   *
    * @return  String
    */
   @RequestMapping(
     value  = "/index",
     method = RequestMethod.GET
   )
-  public String toMerchantIndexView() {
+  public String toMerchantIndexView(Long id, Model model) {
+    model.addAttribute("merchantId", id);
+
     return "/merchant/index";
   }
 

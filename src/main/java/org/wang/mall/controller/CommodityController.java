@@ -1,5 +1,6 @@
 package org.wang.mall.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,10 +20,12 @@ import org.wang.mall.model.Brand;
 import org.wang.mall.model.Category;
 import org.wang.mall.model.Commodity;
 import org.wang.mall.model.Effect;
+import org.wang.mall.model.Merchant;
 import org.wang.mall.service.BrandService;
 import org.wang.mall.service.CategoryService;
 import org.wang.mall.service.CommodityService;
 import org.wang.mall.service.EffectService;
+import org.wang.mall.service.MerchantService;
 
 
 /**
@@ -42,6 +45,7 @@ public class CommodityController {
   /** TODO: DOCUMENT ME! */
   @Autowired private CommodityService commodityService;
   @Autowired private EffectService    effectService;
+  @Autowired private MerchantService  merchantService;
 
   //~ Methods ----------------------------------------------------------------------------------------------------------
 
@@ -192,5 +196,36 @@ public class CommodityController {
     model.addAttribute("command", command);
 
     return "commodity/info";
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * toNotInPutawayView.
+   *
+   * @param   request  HttpServletRequest
+   * @param   id       Long
+   * @param   model    Model
+   *
+   * @return  String
+   */
+  @RequestMapping(
+    value  = "/notInPutaway",
+    method = RequestMethod.GET
+  )
+  public String toNotInPutawayView(HttpServletRequest request, Long id, Model model) {
+    Merchant               merchant             = merchantService.findOne(id);
+    List<Commodity>        commodityList        = commodityService.findByMerchantAndIsPutaway(merchant, false);
+    List<CommodityCommand> commodityCommandList = new ArrayList<CommodityCommand>();
+
+    for (Commodity commodity : commodityList) {
+      CommodityCommand commodityCommand = new CommodityCommand();
+      commodityCommand.toNotInPutaway(commodity);
+      commodityCommandList.add(commodityCommand);
+    }
+
+    model.addAttribute("commodityList", commodityCommandList);
+
+    return "commodity/putaway";
   }
 } // end class CommodityController

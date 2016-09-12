@@ -21,18 +21,14 @@
   <div class="container">
 
     <div class="row">
-      <aside class="col-md-4" id="categoryList">
-        <ul class="nav nav-pills nav-stacked left" role="tablist">
-          <li role="presentation"><a href="/commodity/create?id=${merchantId}" aria-controls="home" role="tab"
-                                     data-toggle="pill">添加新的商品</a></li>
-          <li role="presentation"><a href="/merchant/" aria-controls="home" role="tab" data-toggle="pill">查看需要处理的订单</a>
-          </li>
-          <li role="presentation"><a href="/merchant/" aria-controls="home" role="tab" data-toggle="pill">查看正在销售的商品</a>
-          </li>
-          <li role="presentation"><a href="/merchant/" aria-controls="home" role="tab" data-toggle="pill">查看未上架商品</a>
-          </li>
+      <div class="col-md-4">
+        <ul class="nav nav-pills nav-stacked" role="tablist">
+          <li role="presentation"><a href="/commodity/create?id=${merchantId}">添加新的商品</a></li>
+          <li role="presentation"><a href="/indent/process?id=${merchantId}">查看需要处理的订单</a></li>
+          <li role="presentation"><a href="/commodity/inPutaway?id=${merchantId}">查看正在销售的商品</a></li>
+          <li role="presentation"><a href="/commodity/notInPutaway?id=${merchantId}">查看未上架商品</a></li>
         </ul>
-      </aside>
+      </div>
       <div class="col-md-8">
         <main id="commodityListBySales">
           <%--commodityListBySales.jsp--%>

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import org.springframework.transaction.annotation.Transactional;
 
+import org.wang.mall.command.CommodityCommand;
 import org.wang.mall.model.Commodity;
 import org.wang.mall.model.Merchant;
 import org.wang.mall.repository.CommodityRepository;
@@ -35,6 +36,15 @@ import org.wang.mall.service.CommodityService;
    */
   @Override public List<Commodity> findAll() {
     return (List<Commodity>) commodityRepository.findAll();
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * @see  org.wang.mall.service.CommodityService#findByMerchantAndIsPutaway(org.wang.mall.model.Merchant, boolean)
+   */
+  @Override public List<Commodity> findByMerchantAndIsPutaway(Merchant merchant, boolean b) {
+    return commodityRepository.findByIsPutawayAndMerchant(b, merchant);
   }
 
   //~ ------------------------------------------------------------------------------------------------------------------
