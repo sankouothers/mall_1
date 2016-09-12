@@ -201,6 +201,37 @@ public class CommodityController {
   //~ ------------------------------------------------------------------------------------------------------------------
 
   /**
+   * toInPutawayView.
+   *
+   * @param   request  HttpServletRequest
+   * @param   id       Long
+   * @param   model    Model
+   *
+   * @return  String
+   */
+  @RequestMapping(
+    value  = "/inPutaway",
+    method = RequestMethod.GET
+  )
+  public String toInPutawayView(HttpServletRequest request, Long id, Model model) {
+    Merchant               merchant             = merchantService.findOne(id);
+    List<Commodity>        commodityList        = commodityService.findByMerchantAndIsPutaway(merchant, true);
+    List<CommodityCommand> commodityCommandList = new ArrayList<CommodityCommand>();
+
+    for (Commodity commodity : commodityList) {
+      CommodityCommand commodityCommand = new CommodityCommand();
+      commodityCommand.toNotInPutaway(commodity);
+      commodityCommandList.add(commodityCommand);
+    }
+
+    model.addAttribute("commodityList", commodityCommandList);
+
+    return "commodity/putaway";
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
    * toNotInPutawayView.
    *
    * @param   request  HttpServletRequest
