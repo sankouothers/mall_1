@@ -6,6 +6,7 @@ import org.springframework.data.repository.CrudRepository;
 
 import org.wang.mall.model.Consumer;
 import org.wang.mall.model.Indent;
+import org.wang.mall.model.Merchant;
 
 
 /**
@@ -37,4 +38,6 @@ public interface IndentRepository extends CrudRepository<Indent, Long> {
    * @return  List
    */
   List<Indent> findByIsConfirmAndConsumer(boolean b, Consumer consumer);
+
+  List<Indent> findByIsConfirmAndMerchant(boolean b, Merchant merchant);
 }

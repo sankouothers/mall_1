@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.wang.mall.model.Consumer;
 import org.wang.mall.model.Indent;
+import org.wang.mall.model.Merchant;
 
 
 /**
@@ -35,6 +36,19 @@ public interface IndentService {
    * @return  List
    */
   List<Indent> findByIsConfirmAndConsumer(boolean b, Consumer consumer);
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+
+  /**
+   * findByIsConfirmAndMerchant.
+   *
+   * @param   b         boolean
+   * @param   merchant  Merchant
+   *
+   * @return  List
+   */
+  List<Indent> findByIsConfirmAndMerchant(boolean b, Merchant merchant);
 
   //~ ------------------------------------------------------------------------------------------------------------------
 

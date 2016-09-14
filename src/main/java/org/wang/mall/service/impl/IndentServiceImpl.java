@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import org.wang.mall.model.Consumer;
 import org.wang.mall.model.Indent;
+import org.wang.mall.model.Merchant;
 import org.wang.mall.repository.IndentRepository;
 import org.wang.mall.service.IndentService;
 
@@ -48,6 +49,15 @@ import org.wang.mall.service.IndentService;
   //~ ------------------------------------------------------------------------------------------------------------------
 
   /**
+   * @see  org.wang.mall.service.IndentService#findByIsConfirmAndMerchant(boolean, org.wang.mall.model.Merchant)
+   */
+  @Override public List<Indent> findByIsConfirmAndMerchant(boolean b, Merchant merchant) {
+    return indentRepository.findByIsConfirmAndMerchant(b, merchant);
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
    * @see  org.wang.mall.service.IndentService#findOne(java.lang.Long)
    */
   @Override public Indent findOne(Long id) {
@@ -62,4 +72,5 @@ import org.wang.mall.service.IndentService;
   @Override public void save(Indent indent) {
     indentRepository.save(indent);
   }
+
 } // end class IndentServiceImpl

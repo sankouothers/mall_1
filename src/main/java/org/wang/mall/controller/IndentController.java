@@ -22,10 +22,12 @@ import org.wang.mall.model.Address;
 import org.wang.mall.model.Commodity;
 import org.wang.mall.model.Consumer;
 import org.wang.mall.model.Indent;
+import org.wang.mall.model.Merchant;
 import org.wang.mall.service.AddressService;
 import org.wang.mall.service.CommodityService;
 import org.wang.mall.service.ConsumerService;
 import org.wang.mall.service.IndentService;
+import org.wang.mall.service.MerchantService;
 import org.wang.mall.util.Parameter;
 
 
@@ -51,7 +53,10 @@ public class IndentController {
   @Autowired ConsumerService consumerService;
 
   /** TODO: DOCUMENT ME! */
-  @Autowired IndentService indentService;
+  @Autowired IndentService   indentService;
+
+  /** TODO: DOCUMENT ME! */
+  @Autowired MerchantService merchantService;
 
   //~ Methods ----------------------------------------------------------------------------------------------------------
 
@@ -110,6 +115,30 @@ public class IndentController {
     indentService.save(indent);
 
     return "redirect:/indent/buySuccess";
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+
+  /**
+   * pickup.
+   *
+   * @param   request  HttpServletRequest
+   * @param   model    Model
+   * @param   id       Long
+   *
+   * @return  String
+   */
+  @RequestMapping(
+    value  = "/pickup",
+    method = RequestMethod.GET
+  )
+  public String pickup(HttpServletRequest request, Model model, Long id) {
+    Indent indent = indentService.findOne(id);
+    indent.setShipping(true);
+    indentService.save(indent);
+
+    return "redirect:/indent/process?id=" + indent.getMerchant().getId();
   }
 
   //~ ------------------------------------------------------------------------------------------------------------------
@@ -214,6 +243,49 @@ public class IndentController {
 
     return "indent/allIndent";
   }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+
+  /**
+   * toProcessView.
+   *
+   * @param   request  HttpServletRequest
+   * @param   model    Model
+   * @param   id       Long
+   *
+   * @return  String
+   */
+  @RequestMapping(
+    value  = "/process",
+    method = RequestMethod.GET
+  )
+  public String toProcessView(HttpServletRequest request, Model model, Long id) {
+    Merchant            merchant          = merchantService.findOne(id);
+    List<Indent>        indentList        = indentService.findByIsConfirmAndMerchant(true, merchant);
+    List<IndentCommand> indentCommandList = new ArrayList<IndentCommand>();
+
+    for (Indent indent : indentList) {
+      IndentCommand indentCommand = new IndentCommand();
+      indentCommand.toMerchantIndent(indent);
+      indentCommandList.add(indentCommand);
+    }
+
+    ShoppingCarCommand shoppingCarCommand = new ShoppingCarCommand();
+
+    if (indentCommandList.size() == 0) {
+      shoppingCarCommand.setNotIndent("true");
+
+      return "indent/processIndent";
+    }
+
+    shoppingCarCommand.setNotIndent("false");
+    shoppingCarCommand.setIndentCommandList(indentCommandList);
+
+    model.addAttribute("command", shoppingCarCommand);
+
+    return "indent/processIndent";
+  } // end method toProcessView
 
   //~ ------------------------------------------------------------------------------------------------------------------
 

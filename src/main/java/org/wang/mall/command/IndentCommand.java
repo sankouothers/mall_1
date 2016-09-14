@@ -504,6 +504,32 @@ public class IndentCommand {
   //~ ------------------------------------------------------------------------------------------------------------------
 
   /**
+   * toMerchantIndent.
+   *
+   * @param  indent  Indent
+   */
+  public void toMerchantIndent(Indent indent) {
+    this.setId(indent.getId());
+
+    if (indent.getCommodity() != null) {
+      this.setCommodityName(indent.getCommodity().getName());
+      this.setPrice(indent.getCommodity().getPrice());
+    }
+
+    this.setCreateDate(Util.sdf.format(indent.getCreateDate()));
+    this.setTotalPrice(indent.getTotalPrice());
+    this.setTotalNumber(indent.getTotalNumber());
+
+    if (!indent.isShipping() && !indent.isPickup()) {
+      this.setState("DengDaiFaHuo");
+    } else if (indent.isShipping() && !indent.isPickup()) {
+      this.setState("ZhengZaiYunShu");
+    }
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
    * toShoppingCar.
    *
    * @param  indent  Indent
