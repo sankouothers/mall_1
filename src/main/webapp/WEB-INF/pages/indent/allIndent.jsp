@@ -56,7 +56,7 @@
                 <c:if test="${state eq waitPickup}">
                   <td>等待取货</td>
                 </c:if>
-                <c:if test="${state eq waitPickup}">
+                <c:if test="${state eq isPickup}">
                   <td>已完成</td>
                 </c:if>
                 <td>

@@ -81,3 +81,5 @@ login 功能:      (consumer,merchant)       在页面上点击不同的button�
 商户添加商品功能        (commodity)             在商户信息页面点击添加商品button 进行商品添加;
 商户查询已上架和未上架功能        (commodity)             在商户信息页面点击对应的button 进行商品查询;
 商品上下架功能            (commodity)          在商品所有已上架商品和下架商品的页面点击不同的button进行商品上下架;
+
+以上是1.0-SNAPSHOT版本功能;(以pom文件Version节点为参考)
