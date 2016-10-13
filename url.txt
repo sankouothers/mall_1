@@ -1,0 +1,172 @@
+loginAction
+
+1. /login       get     进入登录页面
+
+2. /login       post    登录操作
+
+
+
+
+MallController
+
+1. /editPassword            post
+
+2. /forgotPassword          post
+
+3. /editPasswordSuccess     get
+
+4. /editPassword            get
+
+5. /forgotPassword          get
+
+6. /mall                    get
+
+7. /search                  get
+
+
+
+
+AddressController
+
+1. /address/create
+
+
+
+CategoryController
+
+1. /category/categoryList      GET
+
+
+
+
+
+CommodityController
+
+1./commodity/commodityList        get
+
+2./commodity/commodityListByCreateDate get
+
+3./commodity/commodityListBySales    get
+
+4./commodity/create   get
+
+5./commodity/create   post
+
+6./commodity/putaway   get
+
+7./commodity/info     get
+
+8./commodity/showInPutaway    get
+
+9./commodity/showNotInPutaway   get
+
+10./commodity/unshelve      get
+
+
+
+
+ConsumerController
+
+./consumer/create    get
+
+./consumer/create   post
+
+跳转到edit页面
+./consumer/edit      get
+
+修改consumer信息
+./consumer/edit     post
+    /consumer/edit?id=用户id     post
+    /consumer/{id}   patch
+
+./consumer/info      get
+    ./consumer/info?id=用户id      get
+        ./consumer/{id}      get
+
+
+
+
+
+IndentController
+
+跳转到创建页面
+./indent/create    get
+    /indent/create    get
+        /indent/create    get
+
+
+跳转到购买页面
+./indent/buy    get
+    /indent/buy?id=订单id    get
+        /indent/{id}buy    get
+
+根据提交的订单信息进行购买操作
+./indent/buy      post
+    /indent/buy      post
+        /indent/{id}      patch
+
+
+./indent/pickup      get
+
+跳转到成功页面
+./indent/addIndentSuccess    get
+
+跳转到成功页面
+./indent/buySuccess  get
+
+取得所有indent
+./indent/allIndent    get
+    /indent/allIndent    get
+        /indent/    get
+
+查看需要处理的订单(跳转页面)
+./indent/process   get
+    /indent/process?id=商户id   get
+        /indent/process?id=商户id   get
+
+跳转到购物车页面
+./indent/shoppingCart    get
+    /indent/shoppingCart?id=商户id    get
+        /indent/shoppingCart    get
+
+
+
+
+MerchantController
+
+跳转到创建merchant页面
+./merchant/create   get
+    /merchant/create   get
+        /merchant/create   get
+
+创建一个merchant
+./merchant/create   post
+    /merchant/create   post
+        /merchant/   post
+
+跳转到edit页面
+./merchant/edit      get
+    /merchant/edit?id=      get
+        /merchant/{id}/edit      get
+
+修改merchant信息(部分信息)
+./merchant/edit     post
+    /merchant/edit     post
+        /merchant/{id}/     patch
+商户登录
+./merchant/login    post
+
+查询该商户所拥有的商品并按指定条件排序
+./merchant/commodityListBySales  get
+    /merchant/commodityListBySales  get
+        /merchant/{id}/commodity?sortby=sales&order=desc  get
+
+取得指定id的merchant信息
+./merchant/info     get
+    /merchant/info?id=     get
+        /merchant/{id}   get
+
+根据商户ID访问对应商户主页
+./merchant/index     get
+    /merchant/index?id=     get
+        /merchant/{id}/index    get
